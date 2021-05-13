@@ -18,4 +18,25 @@ router
     })
   );
 
+router
+  .route('/:id')
+  .get(
+    wrapAsyncFunc(async (req, res) => {
+      const user = await usersService.get(req.params.id);
+      res.status(200).send(User.toResponse(user));
+    })
+  )
+  .put(
+    wrapAsyncFunc(async (req, res) => {
+      const user = await usersService.update(req.params.id, req.body);
+      res.status(200).send(User.toResponse(user));
+    })
+  )
+  .delete(
+    wrapAsyncFunc(async (req, res) => {
+      await usersService.remove(req.params.id);
+      res.sendStatus(204);
+    })
+  );
+
 module.exports = router;

@@ -1,9 +1,36 @@
 const DB = require('../../utils/memoryDB');
+const NotFoundError = require('../../errors/notFoundError');
 
 const ENTITY_NAME = 'Users';
 
 const getAll = async () => DB.getAllEntities(ENTITY_NAME);
 
+const get = async (id) => {
+  const user = DB.getEntity(ENTITY_NAME, id);
+
+  if (!user) {
+    throw new NotFoundError(`Couldn't find a user with id: ${id}`);
+  }
+
+  return user;
+};
+
 const save = async (user) => DB.saveEntity(ENTITY_NAME, user);
 
-module.exports = { getAll, save };
+const update = async (id, user) => {
+  const entity = await DB.updateEntity(ENTITY_NAME, id, user);
+
+  if (!entity) {
+    throw new NotFoundError(`Couldn't find a user with id: ${id}`);
+  }
+
+  return entity;
+};
+
+const remove = async (id) => {
+  if (!(await DB.removeEntity(ENTITY_NAME, id))) {
+    throw new NotFoundError(`Couldn't find a user with id: ${id}`);
+  }
+};
+
+module.exports = { getAll, get, save, update, remove };

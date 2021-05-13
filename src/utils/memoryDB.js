@@ -11,7 +11,7 @@ const DB = {
       DB.Tasks.filter((task) => task).forEach((task) => {
         const item = { ...task };
         item.userId = task.userId === user.id ? null : task.userId;
-        return item.userId;
+        return item;
       });
     }
   },
