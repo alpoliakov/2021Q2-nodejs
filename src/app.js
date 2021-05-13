@@ -3,6 +3,7 @@ const swaggerUI = require('swagger-ui-express');
 const path = require('path');
 const YAML = require('yamljs');
 const userRouter = require('./resources/users/user.router');
+const boardRouter = require('./resources/boards/board.router');
 const startServer = require('./utils/startServer');
 const handlerError = require('./errors/handlerError');
 
@@ -16,6 +17,7 @@ app.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 app.use('/', startServer);
 
 app.use('/users', userRouter);
+app.use('/boards', boardRouter);
 app.use(handlerError);
 
 module.exports = app;
