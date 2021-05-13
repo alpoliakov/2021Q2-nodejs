@@ -8,9 +8,13 @@ const DB = {
   Tasks: [],
   fixStructureUsers: (user) => {
     if (user) {
-      DB.Tasks.filter((task) => task).forEach((task) => {
-        task.userId = task.userId === user.id ? null : task.userId;
-      });
+      DB.Tasks = [
+        ...DB.Tasks.filter((task) => task).map((task) => {
+          const item = { ...task };
+          item.userId = task.userId === user.id ? null : task.userId;
+          return item;
+        }),
+      ];
     }
   },
   fixStructureBoards: (board) => {
