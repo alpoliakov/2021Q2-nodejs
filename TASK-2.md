@@ -38,7 +38,7 @@ npm install
 
 ### Running application
 ***
-(Before starting, make sure that you are in the ````2021Q2-nodejs```` directory and your branch is ````task-2````, and that all dependencies are installed)
+**(Before starting, make sure that you are in the ````2021Q2-nodejs```` directory and your branch is ````task-2````, and that all dependencies are installed)**
 ***
 In the CLI, run commands:
 
@@ -52,7 +52,7 @@ After starting the app on port (4000 as default) you can open in your browser Op
 ### Running tests
 After application running open new terminal.
 ***
-(Before starting, make sure that you are in the ````2021Q2-nodejs```` directory.)
+**(Before starting, make sure that you are in the ````2021Q2-nodejs```` directory.)**
 ***
 To run all tests without authorization:
 ````
