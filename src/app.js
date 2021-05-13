@@ -4,6 +4,7 @@ const path = require('path');
 const YAML = require('yamljs');
 const userRouter = require('./resources/users/user.router');
 const boardRouter = require('./resources/boards/board.router');
+const taskRouter = require('./resources/tasks/task.router');
 const startServer = require('./utils/startServer');
 const handlerError = require('./errors/handlerError');
 
@@ -18,6 +19,7 @@ app.use('/', startServer);
 
 app.use('/users', userRouter);
 app.use('/boards', boardRouter);
+boardRouter.use('/:boardId/tasks', taskRouter);
 app.use(handlerError);
 
 module.exports = app;

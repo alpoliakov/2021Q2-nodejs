@@ -9,9 +9,7 @@ const DB = {
   fixStructureUsers: (user) => {
     if (user) {
       DB.Tasks.filter((task) => task).forEach((task) => {
-        const item = { ...task };
-        item.userId = task.userId === user.id ? null : task.userId;
-        return item;
+        task.userId = task.userId === user.id ? null : task.userId;
       });
     }
   },
