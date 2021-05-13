@@ -1,5 +1,5 @@
 const DB = require('../../utils/memoryDB');
-const NotFoundError = require('../../errors/notFoundError');
+const { NOT_FOUND_ERROR } = require('../../errors/notFoundError');
 
 const ENTITY_NAME = 'Users';
 
@@ -9,7 +9,7 @@ const get = async (id) => {
   const user = DB.getEntity(ENTITY_NAME, id);
 
   if (!user) {
-    throw new NotFoundError(`Couldn't find a user with id: ${id}`);
+    throw new NOT_FOUND_ERROR(`Couldn't find a user with id: ${id}`);
   }
 
   return user;
@@ -21,7 +21,7 @@ const update = async (id, user) => {
   const entity = await DB.updateEntity(ENTITY_NAME, id, user);
 
   if (!entity) {
-    throw new NotFoundError(`Couldn't find a user with id: ${id}`);
+    throw new NOT_FOUND_ERROR(`Couldn't find a user with id: ${id}`);
   }
 
   return entity;
@@ -29,7 +29,7 @@ const update = async (id, user) => {
 
 const remove = async (id) => {
   if (!(await DB.removeEntity(ENTITY_NAME, id))) {
-    throw new NotFoundError(`Couldn't find a user with id: ${id}`);
+    throw new NOT_FOUND_ERROR(`Couldn't find a user with id: ${id}`);
   }
 };
 
