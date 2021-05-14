@@ -1,4 +1,5 @@
 const router = require('express').Router({ mergeParams: true });
+const { StatusCodes } = require('http-status-codes');
 const taskService = require('./task.service');
 const wrapAsyncFunc = require('../../utils/wrapAsyncFunc');
 
@@ -16,7 +17,7 @@ router
         ...req.body,
         boardId: req.params.boardId,
       });
-      res.status(201).send(task);
+      res.status(StatusCodes.CREATED).send(task);
     })
   );
 
@@ -25,7 +26,7 @@ router
   .get(
     wrapAsyncFunc(async (req, res) => {
       const task = await taskService.get(req.params.boardId, req.params.id);
-      res.status(200).send(task);
+      res.status(StatusCodes.OK).send(task);
     })
   )
   .put(
@@ -35,13 +36,13 @@ router
         id: req.params.id,
         boardId: req.params.boardId,
       });
-      res.status(200).send(updatedTask);
+      res.status(StatusCodes.OK).send(updatedTask);
     })
   )
   .delete(
     wrapAsyncFunc(async (req, res) => {
       await taskService.remove(req.params.boardId, req.params.id);
-      res.sendStatus(204);
+      res.sendStatus(StatusCodes.NO_CONTENT);
     })
   );
 

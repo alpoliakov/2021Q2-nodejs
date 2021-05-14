@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { StatusCodes } = require('http-status-codes');
 const User = require('./user.model');
 const usersService = require('./user.service');
 const wrapAsyncFunc = require('../../utils/wrapAsyncFunc');
@@ -14,7 +15,7 @@ router
   .post(
     wrapAsyncFunc(async (req, res) => {
       const user = await usersService.save(req.body);
-      res.status(201).send(User.toResponse(user));
+      res.status(StatusCodes.CREATED).send(User.toResponse(user));
     })
   );
 
@@ -23,19 +24,19 @@ router
   .get(
     wrapAsyncFunc(async (req, res) => {
       const user = await usersService.get(req.params.id);
-      res.status(200).send(User.toResponse(user));
+      res.status(StatusCodes.OK).send(User.toResponse(user));
     })
   )
   .put(
     wrapAsyncFunc(async (req, res) => {
       const user = await usersService.update(req.params.id, req.body);
-      res.status(200).send(User.toResponse(user));
+      res.status(StatusCodes.OK).send(User.toResponse(user));
     })
   )
   .delete(
     wrapAsyncFunc(async (req, res) => {
       await usersService.remove(req.params.id);
-      res.sendStatus(204);
+      res.sendStatus(StatusCodes.NO_CONTENT);
     })
   );
 
