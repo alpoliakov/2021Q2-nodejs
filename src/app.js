@@ -7,7 +7,7 @@ const boardRouter = require('./resources/boards/board.router');
 const taskRouter = require('./resources/tasks/task.router');
 const startService = require('./utils/startService');
 const handlerError = require('./errors/handlerError');
-const pageExistsError = require('./errors/pageExistsError');
+const noPageExistsError = require('./errors/noPageExistsError');
 
 const app = express();
 const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
@@ -21,7 +21,7 @@ app.use('/', startService);
 app.use('/users', userRouter);
 app.use('/boards', boardRouter);
 boardRouter.use('/:boardId/tasks', taskRouter);
-app.use('*', pageExistsError);
+app.use('*', noPageExistsError);
 app.use(handlerError);
 
 module.exports = app;
