@@ -1,4 +1,4 @@
-const startServer = (req, res, next) => {
+const startService = (req, res, next) => {
   if (req.originalUrl === '/') {
     res.send('Service is running!');
     return;
@@ -6,4 +6,4 @@ const startServer = (req, res, next) => {
   next();
 };
 
-module.exports = startServer;
+module.exports = startService;

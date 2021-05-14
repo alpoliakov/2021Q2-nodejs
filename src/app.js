@@ -5,7 +5,7 @@ const YAML = require('yamljs');
 const userRouter = require('./resources/users/user.router');
 const boardRouter = require('./resources/boards/board.router');
 const taskRouter = require('./resources/tasks/task.router');
-const startServer = require('./utils/startServer');
+const startService = require('./utils/startService');
 const handlerError = require('./errors/handlerError');
 
 const app = express();
@@ -15,7 +15,7 @@ app.use(express.json());
 
 app.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
-app.use('/', startServer);
+app.use('/', startService);
 
 app.use('/users', userRouter);
 app.use('/boards', boardRouter);

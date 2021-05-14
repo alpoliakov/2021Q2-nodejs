@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const boardsService = require('./board.service');
-const Board = require('./board.model');
 const wrapAsyncFunc = require('../../utils/wrapAsyncFunc');
 
 router
@@ -13,7 +12,7 @@ router
   )
   .post(
     wrapAsyncFunc(async (req, res) => {
-      const board = await boardsService.save(Board.fromRequest(req.body));
+      const board = await boardsService.save(req.body);
       res.status(201).send(board);
     })
   );

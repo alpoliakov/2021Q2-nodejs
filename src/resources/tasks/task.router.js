@@ -1,6 +1,5 @@
 const router = require('express').Router({ mergeParams: true });
 const taskService = require('./task.service');
-const Task = require('./task.model');
 const wrapAsyncFunc = require('../../utils/wrapAsyncFunc');
 
 router
@@ -13,9 +12,10 @@ router
   )
   .post(
     wrapAsyncFunc(async (req, res) => {
-      const task = await taskService.save(
-        Task.fromRequest({ ...req.body, boardId: req.params.boardId })
-      );
+      const task = await taskService.save({
+        ...req.body,
+        boardId: req.params.boardId,
+      });
       res.status(201).send(task);
     })
   );
@@ -30,13 +30,11 @@ router
   )
   .put(
     wrapAsyncFunc(async (req, res) => {
-      const board = await taskService.update(
-        Task.fromRequest({
-          ...req.body,
-          id: req.params.id,
-          boardId: req.params.boardId,
-        })
-      );
+      const board = await taskService.update({
+        ...req.body,
+        id: req.params.id,
+        boardId: req.params.boardId,
+      });
       res.status(200).send(board);
     })
   )

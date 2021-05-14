@@ -1,8 +1,9 @@
 const boardsRepo = require('./board.memory.repository');
+const Board = require('./board.model');
 
 const getAll = () => boardsRepo.getAll();
 const get = (id) => boardsRepo.get(id);
-const save = (board) => boardsRepo.save(board);
+const save = (board) => boardsRepo.save(Board.fromRequest(board));
 const update = (id, board) => boardsRepo.update(id, board);
 const remove = (id) => boardsRepo.remove(id);
 

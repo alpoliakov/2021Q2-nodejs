@@ -13,7 +13,7 @@ router
   )
   .post(
     wrapAsyncFunc(async (req, res) => {
-      const user = await usersService.save(User.fromRequest(req.body));
+      const user = await usersService.save(req.body);
       res.status(201).send(User.toResponse(user));
     })
   );

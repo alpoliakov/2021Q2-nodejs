@@ -5,7 +5,7 @@ const getAll = () => usersRepo.getAll();
 
 const get = (id) => usersRepo.get(id);
 
-const save = (user) => usersRepo.save(new User(user));
+const save = (user) => usersRepo.save(User.fromRequest(user));
 
 const remove = (id) => usersRepo.remove(id);
 
