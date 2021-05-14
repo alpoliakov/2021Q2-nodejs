@@ -20,22 +20,24 @@ const get = async (boardId, id) => {
 
 const save = async (task) => DB.saveEntity(ENTITY_NAME, task);
 
+const update = async (task) => {
+  const updatedTask = await DB.updateEntity(ENTITY_NAME, task.id, task);
+
+  if (!updatedTask) {
+    throw new NOT_FOUND_ERROR(
+      `Couldn't find a task with id: ${task.id} and boardId: ${task.boardId}`
+    );
+  }
+
+  return updatedTask;
+};
+
 const remove = async (boardId, id) => {
   if (!(await DB.removeEntity(ENTITY_NAME, id))) {
     throw new NOT_FOUND_ERROR(
       `Couldn't find a task with id: ${id} and boardId: ${boardId}`
     );
   }
-};
-
-const update = async (task) => {
-  const entity = await DB.updateEntity(ENTITY_NAME, task.id, task);
-
-  if (!entity) {
-    throw new NOT_FOUND_ERROR(`Couldn't find a task with id: ${task.id}`);
-  }
-
-  return entity;
 };
 
 module.exports = { getAll, save, get, remove, update };

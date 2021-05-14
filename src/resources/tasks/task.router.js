@@ -6,8 +6,8 @@ router
   .route('/')
   .get(
     wrapAsyncFunc(async (req, res) => {
-      const boards = await taskService.getAll(req.params.boardId);
-      await res.json(boards);
+      const tasks = await taskService.getAll(req.params.boardId);
+      await res.json(tasks);
     })
   )
   .post(
@@ -24,18 +24,18 @@ router
   .route('/:id')
   .get(
     wrapAsyncFunc(async (req, res) => {
-      const board = await taskService.get(req.params.boardId, req.params.id);
-      res.status(200).send(board);
+      const task = await taskService.get(req.params.boardId, req.params.id);
+      res.status(200).send(task);
     })
   )
   .put(
     wrapAsyncFunc(async (req, res) => {
-      const board = await taskService.update({
+      const updatedTask = await taskService.update({
         ...req.body,
         id: req.params.id,
         boardId: req.params.boardId,
       });
-      res.status(200).send(board);
+      res.status(200).send(updatedTask);
     })
   )
   .delete(
