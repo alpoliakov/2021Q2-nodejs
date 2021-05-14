@@ -17,20 +17,20 @@ const get = async (id) => {
 
 const save = async (board) => DB.saveEntity(ENTITY_NAME, board);
 
+const update = async (id, board) => {
+  const updatedBoard = await DB.updateEntity(ENTITY_NAME, id, board);
+
+  if (!updatedBoard) {
+    throw new NOT_FOUND_ERROR(`Couldn't find a board with id: ${id}`);
+  }
+
+  return updatedBoard;
+};
+
 const remove = async (id) => {
   if (!(await DB.removeEntity(ENTITY_NAME, id))) {
     throw new NOT_FOUND_ERROR(`Couldn't find a board with id: ${id}`);
   }
-};
-
-const update = async (id, board) => {
-  const entity = await DB.updateEntity(ENTITY_NAME, id, board);
-
-  if (!entity) {
-    throw new NOT_FOUND_ERROR(`Couldn't find a board with id: ${id}`);
-  }
-
-  return entity;
 };
 
 module.exports = { getAll, get, save, remove, update };
