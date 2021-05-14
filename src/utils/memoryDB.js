@@ -19,12 +19,9 @@ const DB = {
   },
   fixStructureBoards: (board) => {
     if (board) {
-      DB.Tasks.filter((task) => task && task.boardId === board.id).map(
-        (task) => {
-          DB.Tasks[DB.Tasks.indexOf(task)] = undefined;
-          return DB.Tasks[DB.Tasks.indexOf(task)];
-        }
-      );
+      DB.Tasks = [
+        ...DB.Tasks.filter((task) => task && task.boardId !== board.id),
+      ];
     }
   },
   fixStructureTasks: () => {},
@@ -62,12 +59,8 @@ const removeEntity = (nameEntity, id) => {
 
   if (entity) {
     DB[`fixStructure${nameEntity}`](entity);
-    const index = DB[nameEntity].indexOf(entity);
     DB[nameEntity] = [
-      ...DB[nameEntity].slice(0, index),
-      ...(DB[nameEntity].length > index + 1
-        ? DB[nameEntity].slice(index + 1)
-        : []),
+      ...DB[nameEntity].filter((item) => item && item.id !== id),
     ];
   }
 
