@@ -22,7 +22,9 @@ const save = async (task) => DB.saveEntity(ENTITY_NAME, task);
 
 const remove = async (boardId, id) => {
   if (!(await DB.removeEntity(ENTITY_NAME, id))) {
-    throw new NOT_FOUND_ERROR(`Couldn't find a task with id: ${id}`);
+    throw new NOT_FOUND_ERROR(
+      `Couldn't find a task with id: ${id} and boardId: ${boardId}`
+    );
   }
 };
 
