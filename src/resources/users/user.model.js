@@ -1,18 +1,51 @@
 const { v4: uuidv4 } = require('uuid');
 
+/**
+ * Class to create user object
+ */
 class User {
-  constructor({ id = uuidv4(), name = 'USER', login = 'user', password = 'P@55w0rd' } = {}) {
+  /**
+   * @param {Object} params - Information about the user
+   */
+  constructor({
+    id = uuidv4(),
+    name = 'USER',
+    login = 'user',
+    password = 'P@55w0rd',
+  } = {}) {
+    /**
+     * @property {string} id User id
+     */
     this.id = id;
+    /**
+     * @property {string} name User name
+     */
     this.name = name;
+    /**
+     * @property {string} password User password
+     */
     this.login = login;
+    /**
+     * @property {string} login User login
+     */
     this.password = password;
   }
 
+  /**
+   * @property {Function} toResponse Destructuring the user object
+   * @param {Object} user User's object
+   * @returns {Object} return destructuring the user object without password
+   */
   static toResponse(user) {
     const { id, name, login } = user;
     return { id, name, login };
   }
 
+  /**
+   * @property {Function} fromRequest Create new User's instance
+   * @param {Object} body Params (id, name, login, password) for create new User instance
+   * @returns {Object} return new User's object
+   */
   static fromRequest(body) {
     return new User(body);
   }
