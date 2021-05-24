@@ -1,6 +1,36 @@
-const getAll = async () => {
-  // TODO: mock implementation. should be replaced during task development
-  return [];
+const DB = require('../../utils/memoryDB');
+const { NOT_FOUND_ERROR } = require('../../errors/notFoundError');
+
+const ENTITY_NAME = 'Users';
+
+const getAll = async () => DB.getAllEntities(ENTITY_NAME);
+
+const get = async (id) => {
+  const user = DB.getEntity(ENTITY_NAME, id);
+
+  if (!user) {
+    throw new NOT_FOUND_ERROR(`Couldn't find a user with id: ${id}`);
+  }
+
+  return user;
 };
 
-module.exports = { getAll };
+const save = async (user) => DB.saveEntity(ENTITY_NAME, user);
+
+const update = async (id, user) => {
+  const entity = await DB.updateEntity(ENTITY_NAME, id, user);
+
+  if (!entity) {
+    throw new NOT_FOUND_ERROR(`Couldn't find a user with id: ${id}`);
+  }
+
+  return entity;
+};
+
+const remove = async (id) => {
+  if (!(await DB.removeEntity(ENTITY_NAME, id))) {
+    throw new NOT_FOUND_ERROR(`Couldn't find a user with id: ${id}`);
+  }
+};
+
+module.exports = { getAll, get, save, update, remove };
