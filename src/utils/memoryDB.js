@@ -8,9 +8,9 @@ const Task = require('../resources/tasks/task.model');
  * Data Base object.
  * @typedef {Object} DB
  * @property {User[]} Users - Array user objects
- * @property {Array.<Board>} Boards - Array user objects
- * @property {Array.<Task>} Tasks - Array user objects
- * @property {Function} fixStructureUsers an user.id null to the user's tasks, if we delete the user.
+ * @property {Board[]} Boards - Array board objects
+ * @property {Task[]} Tasks - Array task objects
+ * @property {Function} fixStructureUsers Assignment to a field an user.id null to the user's tasks, if we delete the user.
  * @property {Function} fixStructureBoards Removing tasks from the array of tasks when deleting a board.
  * @property {Function} fixStructureTasks Removing tasks.
  */
@@ -23,7 +23,7 @@ const DB = {
   Tasks: [],
   /**
    * @param {Object} user - User entity
-   * @returns void
+   * @returns void Filtered the array, but don't return anything
    */
   fixStructureUsers: (user) => {
     if (user) {
@@ -38,7 +38,7 @@ const DB = {
   },
   /**
    * @param {Object} board - Board entity
-   * @returns void
+   * @returns void Filtered the array, but don't return anything
    */
   fixStructureBoards: (board) => {
     if (board) {
@@ -48,7 +48,7 @@ const DB = {
     }
   },
   /**
-   * @returns {Object}
+   * @returns {Object} Return empty object
    */
   fixStructureTasks: () => {},
 };
@@ -120,7 +120,7 @@ const removeEntity = (nameEntity, id) => {
 /**
  * Returns saved entity from DB with the passed name entity and entity.
  * @param {string} nameEntity Entity name
- * @param {Object} Entity object
+ * @param {Object} entity Entity object
  * @returns {Object} Entity object
  */
 const saveEntity = (nameEntity, entity) => {

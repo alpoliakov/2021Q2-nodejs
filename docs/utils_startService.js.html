@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: utils/startService.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,39 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: utils/startService.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** @module startService */
 
+/**
+ * My start service Middleware
+ * @function
+ * @param {Object} req - Express request object
+ * @param {String} req.originalUrl - The original URL
+ * @param {Object} res - Express response object
+ * @param {Function} res.send - The send function from response
+ * @param {Function} next - Express next middleware function
+ * @returns {undefined}
+ */
+const startService = (req, res, next) => {
+  if (req.originalUrl === '/') {
+    res.send('Service is running!');
+    return;
+  }
+  next();
+};
 
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+module.exports = startService;
+</code></pre>
+        </article>
+    </section>
 
 
 

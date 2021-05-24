@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: resources/users/user.model.js</title>
+    <title>JSDoc: Source: resources/tasks/task.model.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: resources/users/user.model.js</h1>
+    <h1 class="page-title">Source: resources/tasks/task.model.js</h1>
 
     
 
@@ -29,57 +29,62 @@
             <pre class="prettyprint source linenums"><code>const { v4: uuidv4 } = require('uuid');
 
 /**
- * Class to create user object
+ * Class to create task object
  */
-class User {
+class Task {
   /**
-   * @param {Object} params - Information about the user
+   * @param {Object} params - Information about the task
    */
   constructor({
     id = uuidv4(),
-    name = 'USER',
-    login = 'user',
-    password = 'P@55w0rd',
+    title = 'Task',
+    order = 0,
+    description = 'task description',
+    userId = null,
+    boardId = null,
+    columnId = null,
   } = {}) {
     /**
-     * @property {string} id User id
+     * @property {string} id Task id
      */
     this.id = id;
     /**
-     * @property {string} name User name
+     * @property {string} title Task title
      */
-    this.name = name;
+    this.title = title;
     /**
-     * @property {string} password User password
+     * @property {number} order Task order
      */
-    this.login = login;
+    this.order = order;
     /**
-     * @property {string} login User login
+     * @property {string} description Task description
      */
-    this.password = password;
+    this.description = description;
+    /**
+     * @property {string|null} userId User id for task
+     */
+    this.userId = userId;
+    /**
+     * @property {string|null} boardId Board id for task
+     */
+    this.boardId = boardId;
+    /**
+     * @property {string|null} columnId Column id for task
+     */
+    this.columnId = columnId;
   }
 
   /**
-   * @property {Function} toResponse Destructuring the user object
-   * @param {{id: string, name: string, login: string, password: string}} user User's object
-   * @returns {{id: string, name: string, login: string}} return destructuring the user object without password
-   */
-  static toResponse(user) {
-    const { id, name, login } = user;
-    return { id, name, login };
-  }
-
-  /**
-   * @property {Function} fromRequest Create new User's instance
-   * @param {Object} body Params (id, name, login, password) for create new User instance
-   * @returns {User} return new User's object
+   * @property {Function} fromRequest Create new Task's instance
+   * @param {Object} body Params (id, title, order, description, userId, boardId, columnId) for create new Task instance
+   * @returns {Task} return new Task's object
    */
   static fromRequest(body) {
-    return new User(body);
+    return new Task(body);
   }
 }
 
-module.exports = User;
+module.exports = Task;
 </code></pre>
         </article>
     </section>

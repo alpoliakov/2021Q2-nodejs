@@ -33,8 +33,8 @@ class User {
 
   /**
    * @property {Function} toResponse Destructuring the user object
-   * @param {Object} user User's object
-   * @returns {Object} return destructuring the user object without password
+   * @param {{id: string, name: string, login: string, password: string}} user User's object
+   * @returns {{id: string, name: string, login: string}} return destructuring the user object without password
    */
   static toResponse(user) {
     const { id, name, login } = user;
@@ -44,7 +44,7 @@ class User {
   /**
    * @property {Function} fromRequest Create new User's instance
    * @param {Object} body Params (id, name, login, password) for create new User instance
-   * @returns {Object} return new User's object
+   * @returns {User} return new User's object
    */
   static fromRequest(body) {
     return new User(body);

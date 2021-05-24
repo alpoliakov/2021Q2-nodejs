@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: errors/notFoundError.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,38 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: errors/notFoundError.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const { StatusCodes } = require('http-status-codes');
 
+/**
+ * Class to create Not Found Error object
+ * @augments Error
+ */
+class NotFoundError extends Error {
+  /**
+   * @param {String} message - Information about the user
+   */
+  constructor(message = 'Not Found') {
+    super(message);
+    /**
+     * @property {number} status Status code
+     */
+    this.status = StatusCodes.NOT_FOUND;
+  }
+}
 
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+module.exports = { NOT_FOUND_ERROR: NotFoundError };
+</code></pre>
+        </article>
+    </section>
 
 
 
