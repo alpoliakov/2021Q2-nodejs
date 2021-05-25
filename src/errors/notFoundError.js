@@ -1,7 +1,7 @@
 const { StatusCodes } = require('http-status-codes');
 
 /**
- * Class to create Not Found Error object
+ * Class to create Not Found Error objects
  * @see <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Error">Class Error</a>
  * @augments Error
  */
