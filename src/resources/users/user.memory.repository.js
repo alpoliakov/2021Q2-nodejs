@@ -3,7 +3,7 @@ const { NOT_FOUND_ERROR } = require('../../errors/notFoundError');
 
 const ENTITY_NAME = 'Users';
 
-/** @module userRepo */
+/** @module usersRepo */
 
 /**
  * Getting an array of all users from DB

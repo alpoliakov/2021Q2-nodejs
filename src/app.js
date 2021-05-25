@@ -2,9 +2,9 @@ const express = require('express');
 const swaggerUI = require('swagger-ui-express');
 const path = require('path');
 const YAML = require('yamljs');
-const userRouter = require('./resources/users/user.router');
-const boardRouter = require('./resources/boards/board.router');
-const taskRouter = require('./resources/tasks/task.router');
+const usersRouter = require('./resources/users/user.router');
+const boardsRouter = require('./resources/boards/board.router');
+const tasksRouter = require('./resources/tasks/task.router');
 const startService = require('./utils/startService');
 const handlerError = require('./errors/handlerError');
 const noPageExistsError = require('./errors/noPageExistsError');
@@ -18,9 +18,9 @@ app.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 app.use('/', startService);
 
-app.use('/users', userRouter);
-app.use('/boards', boardRouter);
-boardRouter.use('/:boardId/tasks', taskRouter);
+app.use('/users', usersRouter);
+app.use('/boards', boardsRouter);
+boardsRouter.use('/:boardId/tasks', tasksRouter);
 app.use('*', noPageExistsError);
 app.use(handlerError);
 
