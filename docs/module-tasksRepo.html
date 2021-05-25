@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: userRepo</title>
+    <title>JSDoc: Module: tasksRepo</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: userRepo</h1>
+    <h1 class="page-title">Module: tasksRepo</h1>
 
     
 
@@ -64,7 +64,7 @@
     
 
     
-    <h4 class="name" id="~get"><span class="type-signature">(async, inner) </span>get<span class="signature">(id)</span><span class="type-signature"> &rarr; {<a href="User.html">User</a>}</span></h4>
+    <h4 class="name" id="~get"><span class="type-signature">(async, inner) </span>get<span class="signature">(boardId, id)</span><span class="type-signature"> &rarr; {<a href="Task.html">Task</a>}</span></h4>
     
 
     
@@ -72,7 +72,7 @@
 
 
 <div class="description">
-    <p>Getting a user by his id from DB</p>
+    <p>Getting a task by his id and board id from DB</p>
 </div>
 
 
@@ -108,6 +108,29 @@
 
         <tr>
             
+                <td class="name"><code>boardId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Board id</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>id</code></td>
             
 
@@ -124,7 +147,7 @@
 
             
 
-            <td class="description last"><p>User id</p></td>
+            <td class="description last"><p>Task id</p></td>
         </tr>
 
     
@@ -165,7 +188,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="resources_users_user.memory.repository.js.html">resources/users/user.memory.repository.js</a>, <a href="resources_users_user.memory.repository.js.html#line19">line 19</a>
+        <a href="resources_tasks_task.memory.repository.js.html">resources/tasks/task.memory.repository.js</a>, <a href="resources_tasks_task.memory.repository.js.html#line22">line 22</a>
     </li></ul></dd>
     
 
@@ -194,7 +217,7 @@
 
         
 <div class="param-desc">
-    <p>User's object</p>
+    <p>Task's object</p>
 </div>
 
 
@@ -205,7 +228,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="User.html">User</a></span>
+<span class="param-type"><a href="Task.html">Task</a></span>
 
 
     </dd>
@@ -223,7 +246,7 @@
     
 
     
-    <h4 class="name" id="~getAll"><span class="type-signature">(async, inner) </span>getAll<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;<a href="User.html">User</a>>}</span></h4>
+    <h4 class="name" id="~getAll"><span class="type-signature">(async, inner) </span>getAll<span class="signature">(boardId)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="Task.html">Task</a>>}</span></h4>
     
 
     
@@ -231,117 +254,7 @@
 
 
 <div class="description">
-    <p>Getting an array of all users from DB</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="resources_users_user.memory.repository.js.html">resources/users/user.memory.repository.js</a>, <a href="resources_users_user.memory.repository.js.html#line12">line 12</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>Array of user objects</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array.&lt;<a href="User.html">User</a>></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="~remove"><span class="type-signature">(async, inner) </span>remove<span class="signature">(id)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Remove user's data from DB</p>
+    <p>Getting an array of all tasks on the board from DB</p>
 </div>
 
 
@@ -377,13 +290,13 @@
 
         <tr>
             
-                <td class="name"><code>id</code></td>
+                <td class="name"><code>boardId</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">String</span>
 
 
             
@@ -393,7 +306,7 @@
 
             
 
-            <td class="description last"><p>User id</p></td>
+            <td class="description last"><p>Board id</p></td>
         </tr>
 
     
@@ -434,7 +347,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="resources_users_user.memory.repository.js.html">resources/users/user.memory.repository.js</a>, <a href="resources_users_user.memory.repository.js.html#line57">line 57</a>
+        <a href="resources_tasks_task.memory.repository.js.html">resources/tasks/task.memory.repository.js</a>, <a href="resources_tasks_task.memory.repository.js.html#line13">line 13</a>
     </li></ul></dd>
     
 
@@ -463,10 +376,22 @@
 
         
 <div class="param-desc">
-    <p>void Return nothing if user deletion is successful</p>
+    <p>Array of tasks objects</p>
 </div>
 
 
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="Task.html">Task</a>></span>
+
+
+    </dd>
+</dl>
 
     
 
@@ -480,7 +405,7 @@
     
 
     
-    <h4 class="name" id="~save"><span class="type-signature">(async, inner) </span>save<span class="signature">(user)</span><span class="type-signature"> &rarr; {<a href="User.html">User</a>}</span></h4>
+    <h4 class="name" id="~remove"><span class="type-signature">(async, inner) </span>remove<span class="signature">(boardId, id)</span><span class="type-signature"></span></h4>
     
 
     
@@ -488,7 +413,7 @@
 
 
 <div class="description">
-    <p>Save user in DB</p>
+    <p>Remove tasks's data from DB</p>
 </div>
 
 
@@ -524,7 +449,177 @@
 
         <tr>
             
-                <td class="name"><code>user</code></td>
+                <td class="name"><code>boardId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Board id</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Task id</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="resources_tasks_task.memory.repository.js.html">resources/tasks/task.memory.repository.js</a>, <a href="resources_tasks_task.memory.repository.js.html#line64">line 64</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>void Return nothing if task deletion is successful</p>
+</div>
+
+
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~save"><span class="type-signature">(async, inner) </span>save<span class="signature">(task)</span><span class="type-signature"> &rarr; {<a href="Task.html">Task</a>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Save task in DB</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>task</code></td>
             
 
             <td class="type">
@@ -540,7 +635,7 @@
 
             
 
-            <td class="description last"><p>User object</p></td>
+            <td class="description last"><p>Task data</p></td>
         </tr>
 
     
@@ -581,7 +676,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="resources_users_user.memory.repository.js.html">resources/users/user.memory.repository.js</a>, <a href="resources_users_user.memory.repository.js.html#line34">line 34</a>
+        <a href="resources_tasks_task.memory.repository.js.html">resources/tasks/task.memory.repository.js</a>, <a href="resources_tasks_task.memory.repository.js.html#line39">line 39</a>
     </li></ul></dd>
     
 
@@ -610,7 +705,7 @@
 
         
 <div class="param-desc">
-    <p>Saved user's object</p>
+    <p>Saved task's object</p>
 </div>
 
 
@@ -621,7 +716,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="User.html">User</a></span>
+<span class="param-type"><a href="Task.html">Task</a></span>
 
 
     </dd>
@@ -639,7 +734,7 @@
     
 
     
-    <h4 class="name" id="~update"><span class="type-signature">(async, inner) </span>update<span class="signature">(id, user)</span><span class="type-signature"> &rarr; {<a href="User.html">User</a>}</span></h4>
+    <h4 class="name" id="~update"><span class="type-signature">(async, inner) </span>update<span class="signature">(task)</span><span class="type-signature"> &rarr; {<a href="Task.html">Task</a>}</span></h4>
     
 
     
@@ -647,7 +742,7 @@
 
 
 <div class="description">
-    <p>Update user's data in DB</p>
+    <p>Update task's data in DB</p>
 </div>
 
 
@@ -683,30 +778,7 @@
 
         <tr>
             
-                <td class="name"><code>id</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>User id</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>user</code></td>
+                <td class="name"><code>task</code></td>
             
 
             <td class="type">
@@ -722,7 +794,7 @@
 
             
 
-            <td class="description last"><p>User object</p></td>
+            <td class="description last"><p>Task object</p></td>
         </tr>
 
     
@@ -763,7 +835,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="resources_users_user.memory.repository.js.html">resources/users/user.memory.repository.js</a>, <a href="resources_users_user.memory.repository.js.html#line42">line 42</a>
+        <a href="resources_tasks_task.memory.repository.js.html">resources/tasks/task.memory.repository.js</a>, <a href="resources_tasks_task.memory.repository.js.html#line46">line 46</a>
     </li></ul></dd>
     
 
@@ -792,7 +864,7 @@
 
         
 <div class="param-desc">
-    <p>Updated user's object</p>
+    <p>Updated task's object</p>
 </div>
 
 
@@ -803,7 +875,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="User.html">User</a></span>
+<span class="param-type"><a href="Task.html">Task</a></span>
 
 
     </dd>

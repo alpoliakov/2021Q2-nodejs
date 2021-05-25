@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: errors/noPageExistsError.js</title>
+    <title>JSDoc: Source: resources/boards/board.memory.repository.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: errors/noPageExistsError.js</h1>
+    <h1 class="page-title">Source: resources/boards/board.memory.repository.js</h1>
 
     
 
@@ -26,23 +26,69 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const { StatusCodes } = require('http-status-codes');
+            <pre class="prettyprint source linenums"><code>const DB = require('../../utils/memoryDB');
+const { NOT_FOUND_ERROR } = require('../../errors/notFoundError');
 
-/** @module noPageExistsError */
+const ENTITY_NAME = 'Boards';
+
+/** @module boardsRepo */
 
 /**
- * My No Page Exists Error Middleware
- * @function
- * @param {Object} req - Express request object
- * @param {Object} res - Express response object
- * @param {Function} res.status - The status function from response
- * @param {Function} next - Express next middleware function
- * @returns {Object&lt;number, string>} Returning an error object for a non-exists page
+ * Getting an array of all boards from DB
+ * @returns {Array&lt;Board>} Array of board objects
  */
-const noPageExistsError = (req, res) =>
-  res.status(StatusCodes.NOT_FOUND).send('No such page exists!');
+const getAll = async () => DB.getAllEntities(ENTITY_NAME);
 
-module.exports = noPageExistsError;
+/**
+ * Getting a board by his id from DB
+ * @param {string} id Board id
+ * @returns {Board} Board's object
+ */
+const get = async (id) => {
+  const board = DB.getEntity(ENTITY_NAME, id);
+
+  if (!board) {
+    throw new NOT_FOUND_ERROR(`Couldn't find a board with id: ${id}`);
+  }
+
+  return board;
+};
+
+/**
+ * Save board in DB
+ * @param {Object} board Board object
+ * @returns {Board} Saved board's object
+ */
+const save = async (board) => DB.saveEntity(ENTITY_NAME, board);
+
+/**
+ * Update board's data in DB
+ * @param {string} id Board id
+ * @param {Object} board Board object
+ * @returns {Board} Updated board's object
+ */
+const update = async (id, board) => {
+  const updatedBoard = await DB.updateEntity(ENTITY_NAME, id, board);
+
+  if (!updatedBoard) {
+    throw new NOT_FOUND_ERROR(`Couldn't find a board with id: ${id}`);
+  }
+
+  return updatedBoard;
+};
+
+/**
+ * Remove board's data from DB
+ * @param {string} id Board id
+ * @returns void Return nothing if board deletion is successful
+ */
+const remove = async (id) => {
+  if (!(await DB.removeEntity(ENTITY_NAME, id))) {
+    throw new NOT_FOUND_ERROR(`Couldn't find a board with id: ${id}`);
+  }
+};
+
+module.exports = { getAll, get, save, remove, update };
 </code></pre>
         </article>
     </section>

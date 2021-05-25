@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: errors/noPageExistsError.js</title>
+    <title>JSDoc: Source: resources/boards/board.service.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: errors/noPageExistsError.js</h1>
+    <h1 class="page-title">Source: resources/boards/board.service.js</h1>
 
     
 
@@ -26,23 +26,47 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const { StatusCodes } = require('http-status-codes');
+            <pre class="prettyprint source linenums"><code>const boardsRepo = require('./board.memory.repository');
+const Board = require('./board.model');
 
-/** @module noPageExistsError */
+/** @module boardsService */
 
 /**
- * My No Page Exists Error Middleware
- * @function
- * @param {Object} req - Express request object
- * @param {Object} res - Express response object
- * @param {Function} res.status - The status function from response
- * @param {Function} next - Express next middleware function
- * @returns {Object&lt;number, string>} Returning an error object for a non-exists page
+ * Call the getAll method from the boardsRepo module
+ * @returns {Array&lt;Board>} Array of board objects
  */
-const noPageExistsError = (req, res) =>
-  res.status(StatusCodes.NOT_FOUND).send('No such page exists!');
+const getAll = () => boardsRepo.getAll();
 
-module.exports = noPageExistsError;
+/**
+ * Call the get method from the boardsRepo module
+ * @param {String} id Board id
+ * @returns {Board} Board object
+ */
+const get = (id) => boardsRepo.get(id);
+
+/**
+ * Call the save method from the boardsRepo module and create Board instance
+ * @param {Object} board Board data
+ * @returns {Board} Saved Board instance
+ */
+const save = (board) => boardsRepo.save(Board.fromRequest(board));
+
+/**
+ * Call the update method from the boardsRepo module and update Board instance
+ * @param {String} id Board id
+ * @param {Object} board Board data
+ * @returns {Board} Updated Board instance
+ */
+const update = (id, board) => boardsRepo.update(id, board);
+
+/**
+ * Call the remove method from the boardsRepo module and remove Board instance
+ * @param {String} id Board id
+ * @returns void Return nothing if user deletion is successful
+ */
+const remove = (id) => boardsRepo.remove(id);
+
+module.exports = { getAll, get, save, update, remove };
 </code></pre>
         </article>
     </section>
