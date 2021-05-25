@@ -7,17 +7,20 @@ const ENTITY_NAME = 'Users';
 
 /**
  * Getting an array of all users from DB
- * @returns {Array<User>} Array of user objects
+ * @returns {Array<UserData>} Array of user objects
  */
-const getAll = async () => DB.getAllEntities(ENTITY_NAME);
+const getAll = async () => {
+  const users = await DB.getAllEntities(ENTITY_NAME);
+  return users;
+};
 
 /**
  * Getting a user by his id from DB
  * @param {string} id User id
- * @returns {User} User's object
+ * @returns {UserData} User's object
  */
 const get = async (id) => {
-  const user = DB.getEntity(ENTITY_NAME, id);
+  const user = await DB.getEntity(ENTITY_NAME, id);
 
   if (!user) {
     throw new NOT_FOUND_ERROR(`Couldn't find a user with id: ${id}`);
@@ -28,16 +31,19 @@ const get = async (id) => {
 
 /**
  * Save user in DB
- * @param {Object} user Data for create user
- * @returns {User} Saved user's object
+ * @param {UserData} user Data for create user
+ * @returns {UserData} Saved user's object
  */
-const save = async (user) => DB.saveEntity(ENTITY_NAME, user);
+const save = async (user) => {
+  const newUser = await DB.saveEntity(ENTITY_NAME, user);
+  return newUser;
+};
 
 /**
  * Update user's data in DB
  * @param {string} id User id
- * @param {Object} user Data for update user
- * @returns {User} Updated user's object
+ * @param {UserData} user Data for update user
+ * @returns {UserData} Updated user's object
  */
 const update = async (id, user) => {
   const entity = await DB.updateEntity(ENTITY_NAME, id, user);

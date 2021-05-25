@@ -8,16 +8,20 @@ const { NOT_FOUND_ERROR } = require('../../errors/notFoundError');
 /**
  * Getting an array of all tasks on the board from DB
  * @param {String} boardId Board id
- * @returns {Array<Task>} Array of tasks objects
+ * @returns {Array<TaskData>} Array of tasks objects
  */
-const getAll = async (boardId) =>
-  DB.getAllEntities(ENTITY_NAME).filter((task) => task.boardId === boardId);
+const getAll = async (boardId) => {
+  const tasks = await DB.getAllEntities(ENTITY_NAME).filter(
+    (task) => task.boardId === boardId
+  );
+  return tasks;
+};
 
 /**
  * Getting a task by his id and board id from DB
  * @param {string} boardId Board id
  * @param {string} id Task id
- * @returns {Task} Task's object
+ * @returns {TaskData} Task's object
  */
 const get = async (boardId, id) => {
   const task = await DB.getEntity(ENTITY_NAME, id);
@@ -33,15 +37,18 @@ const get = async (boardId, id) => {
 
 /**
  * Save task in DB
- * @param {Object} task Data for create task
- * @returns {Task} Saved task's object
+ * @param {TaskData} task Data for create task
+ * @returns {TaskData} Saved task's object
  */
-const save = async (task) => DB.saveEntity(ENTITY_NAME, task);
+const save = async (task) => {
+  const newTask = await DB.saveEntity(ENTITY_NAME, task);
+  return newTask;
+};
 
 /**
  * Update task's data in DB
- * @param {Object} task Data for update task
- * @returns {Task} Updated task's object
+ * @param {TaskData} task Data for update task
+ * @returns {TaskData} Updated task's object
  */
 const update = async (task) => {
   const updatedTask = await DB.updateEntity(ENTITY_NAME, task.id, task);

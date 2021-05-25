@@ -1,15 +1,15 @@
 const { v4: uuidv4 } = require('uuid');
 
 /**
- * Data for create instance of Task class.
+ * Task's data structure.
  * @typedef {Object} TaskData
- * @property {String} id - Task's id
- * @property {String} title - Task's title
- * @property {Number} order - Task's order
- * @property {String} description - Task's description
- * @property {String|null} userId - User's id
- * @property {String|null} boardId - Board's id
- * @property {String|null} columnId - Column's id
+ * @property {string} id - Task's id
+ * @property {string} title - Task's title
+ * @property {number} order - Task's order
+ * @property {string} description - Task's description
+ * @property {?string} userId - User's id
+ * @property {?string} boardId - Board's id
+ * @property {?string} columnId - Column's id
  */
 
 /**
@@ -45,15 +45,15 @@ class Task {
      */
     this.description = description;
     /**
-     * @property {string|null} userId User id for task
+     * @property {?string} userId User id for task
      */
     this.userId = userId;
     /**
-     * @property {string|null} boardId Board id for task
+     * @property {?string} boardId Board id for task
      */
     this.boardId = boardId;
     /**
-     * @property {string|null} columnId Column id for task
+     * @property {?string} columnId Column id for task
      */
     this.columnId = columnId;
   }
@@ -61,7 +61,7 @@ class Task {
   /**
    * @property {Function} fromRequest Create new Task's instance
    * @param {TaskData} body Params (id, title, order, description, userId, boardId, columnId) for create new Task instance
-   * @returns {Task} return new Task's object
+   * @returns {TaskData} return new Task's object
    */
   static fromRequest(body) {
     return new Task(body);

@@ -7,17 +7,20 @@ const ENTITY_NAME = 'Boards';
 
 /**
  * Getting an array of all boards from DB
- * @returns {Array<Board>} Array of board objects
+ * @returns {Array<BoardData>} Array of board objects
  */
-const getAll = async () => DB.getAllEntities(ENTITY_NAME);
+const getAll = async () => {
+  const boards = await DB.getAllEntities(ENTITY_NAME);
+  return boards;
+};
 
 /**
  * Getting a board by his id from DB
  * @param {string} id Board id
- * @returns {Board} Board's object
+ * @returns {BoardData} Board's object
  */
 const get = async (id) => {
-  const board = DB.getEntity(ENTITY_NAME, id);
+  const board = await DB.getEntity(ENTITY_NAME, id);
 
   if (!board) {
     throw new NOT_FOUND_ERROR(`Couldn't find a board with id: ${id}`);
@@ -28,16 +31,19 @@ const get = async (id) => {
 
 /**
  * Save item board in DB
- * @param {Object} board Data for create board
- * @returns {Board} Saved board's object
+ * @param {BoardData} board Data for create board
+ * @returns {BoardData} Saved board's object
  */
-const save = async (board) => DB.saveEntity(ENTITY_NAME, board);
+const save = async (board) => {
+  const newBoard = await DB.saveEntity(ENTITY_NAME, board);
+  return newBoard;
+};
 
 /**
  * Update board's data in DB
  * @param {string} id Board id
- * @param {Object} board Data for update board
- * @returns {Board} Updated board's object
+ * @param {BoardData} board Data for update board
+ * @returns {BoardData} Updated board's object
  */
 const update = async (id, board) => {
   const updatedBoard = await DB.updateEntity(ENTITY_NAME, id, board);

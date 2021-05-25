@@ -2,28 +2,32 @@ const User = require('../resources/users/user.model');
 const Board = require('../resources/boards/board.model');
 const Task = require('../resources/tasks/task.model');
 
-/** @module DB */
-
 /**
- * Data Base object.
- * @typedef {Object} DB
- * @property {User[]} Users - Array user objects
- * @property {Board[]} Boards - Array board objects
- * @property {Task[]} Tasks - Array task objects
- * @property {Function} fixStructureUsers Assignment to a field an user.id null to the user's tasks, if we delete the user.
- * @property {Function} fixStructureBoards Removing tasks from the array of tasks when deleting a board.
- * @property {Function} fixStructureTasks Removing tasks.
+ * DB module
+ * @module DB
  */
 
-/** @type {DB} */
-
+/**
+ * Data Base object
+ * @type {Object.<Array, Array, Array, Function, Function, Function>}
+ * @namespace
+ */
 const DB = {
+  /**
+   * @property {UserData[]} Users Array user objects
+   */
   Users: [],
+  /**
+   * @property {BoardData[]} Boards Array board objects
+   */
   Boards: [],
+  /**
+   * @property {TaskData[]} Tasks Array task objects
+   */
   Tasks: [],
   /**
-   * @param {Object} user - User entity
-   * @returns void Filtered the array, but don't return anything
+   * @param {UserData} user - User entity
+   * @returns void Filtered the Tasks array, but don't return anything
    */
   fixStructureUsers: (user) => {
     if (user) {
@@ -37,8 +41,8 @@ const DB = {
     }
   },
   /**
-   * @param {Object} board - Board entity
-   * @returns void Filtered the array, but don't return anything
+   * @param {BoardData} board - Board entity
+   * @returns void Filtered the Tasks array, but don't return anything
    */
   fixStructureBoards: (board) => {
     if (board) {

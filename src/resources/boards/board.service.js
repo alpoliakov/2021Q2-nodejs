@@ -5,29 +5,29 @@ const Board = require('./board.model');
 
 /**
  * Call the getAll method from the boardsRepo module
- * @returns {Array<Board>} Array of board objects
+ * @returns {Array<BoardData>} Array of board objects
  */
 const getAll = () => boardsRepo.getAll();
 
 /**
  * Call the get method from the boardsRepo module
  * @param {String} id Board id
- * @returns {Board} Board object
+ * @returns {BoardData} Board object
  */
 const get = (id) => boardsRepo.get(id);
 
 /**
  * Call the save method from the boardsRepo module and create board instance
- * @param {Object} board Data for create board
- * @returns {Board} Saved board instance
+ * @param {BoardData} board Data for create board
+ * @returns {BoardData} Saved board instance
  */
 const save = (board) => boardsRepo.save(Board.fromRequest(board));
 
 /**
  * Call the update method from the boardsRepo module and update board instance
  * @param {String} id Board id
- * @param {Object} board Data for update board
- * @returns {Board} Updated board instance
+ * @param {BoardData} board Data for update board
+ * @returns {BoardData} Updated board instance
  */
 const update = (id, board) => boardsRepo.update(id, board);
 

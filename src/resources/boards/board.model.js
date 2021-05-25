@@ -2,7 +2,7 @@ const { v4: uuidv4 } = require('uuid');
 const Column = require('../columns/column.model');
 
 /**
- * Data for create instance of Board class.
+ * Board's data structure.
  * @typedef {Object} BoardData
  * @property {String} id - Board's id
  * @property {String} title - Board's title

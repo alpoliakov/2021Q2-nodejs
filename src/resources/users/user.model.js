@@ -1,7 +1,7 @@
 const { v4: uuidv4 } = require('uuid');
 
 /**
- * Data for create instance of User class.
+ * User's data structure.
  * @typedef {Object} UserData
  * @property {String} id - User's id
  * @property {String} name - User's name
