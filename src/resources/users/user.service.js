@@ -12,13 +12,13 @@ const getAll = () => usersRepo.getAll();
 /**
  * Call the get method from the usersRepo module
  * @param {String} id User id
- * @returns {User} User object
+ * @returns {User} User's object
  */
 const get = (id) => usersRepo.get(id);
 
 /**
  * Call the save method from the usersRepo module and create user instance
- * @param {Object} user User data
+ * @param {Object} user Data for create user
  * @returns {User} Saved user instance
  */
 const save = (user) => usersRepo.save(User.fromRequest(user));
@@ -26,7 +26,7 @@ const save = (user) => usersRepo.save(User.fromRequest(user));
 /**
  * Call the update method from the usersRepo module and update User instance
  * @param {String} id User id
- * @param {Object} user User data
+ * @param {Object} user Data for update user
  * @returns {User} Updated user instance
  */
 const update = (id, user) => usersRepo.update(id, user);

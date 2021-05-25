@@ -18,7 +18,7 @@ const get = (id) => boardsRepo.get(id);
 
 /**
  * Call the save method from the boardsRepo module and create board instance
- * @param {Object} board Board data
+ * @param {Object} board Data for create board
  * @returns {Board} Saved board instance
  */
 const save = (board) => boardsRepo.save(Board.fromRequest(board));
@@ -26,7 +26,7 @@ const save = (board) => boardsRepo.save(Board.fromRequest(board));
 /**
  * Call the update method from the boardsRepo module and update board instance
  * @param {String} id Board id
- * @param {Object} board Board data
+ * @param {Object} board Data for update board
  * @returns {Board} Updated board instance
  */
 const update = (id, board) => boardsRepo.update(id, board);

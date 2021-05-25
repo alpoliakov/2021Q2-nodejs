@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: resources/boards/board.model.js</title>
+    <title>JSDoc: Source: resources/columns/column.model.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: resources/boards/board.model.js</h1>
+    <h1 class="page-title">Source: resources/columns/column.model.js</h1>
 
     
 
@@ -29,42 +29,24 @@
             <pre class="prettyprint source linenums"><code>const { v4: uuidv4 } = require('uuid');
 
 /**
- * Class to create board object
+ * Class to create column objects
  */
-class Board {
+class Column {
   /**
-   * @param {Object} params - Information about the board
+   * @param {Object} params - Information about the column
    */
-  constructor({
-    id = uuidv4(),
-    title = 'Autotest board',
-    columns = [{ title: 'Backlog', order: 1 }],
-  } = {}) {
-    /**
-     * @property {string} id Board id
-     */
+  constructor({ id = uuidv4(), title = 'Test column', order = 1 } = {}) {
     this.id = id;
-    /**
-     * @property {string} title Board title
-     */
     this.title = title;
-    /**
-     * @property {Array&lt;Object>} columns Array column objects
-     */
-    this.columns = columns;
+    this.order = order;
   }
 
-  /**
-   * @property {Function} fromRequest Create new Board's instance
-   * @param {Object} body Params (id, title, columns) for create new Board instance
-   * @returns {Board} return new Board's object
-   */
   static fromRequest(body) {
-    return new Board(body);
+    return new Column(body);
   }
 }
 
-module.exports = Board;
+module.exports = Column;
 </code></pre>
         </article>
     </section>

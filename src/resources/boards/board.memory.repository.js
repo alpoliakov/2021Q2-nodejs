@@ -27,8 +27,8 @@ const get = async (id) => {
 };
 
 /**
- * Save board in DB
- * @param {Object} board Board object
+ * Save item board in DB
+ * @param {Object} board Data for create board
  * @returns {Board} Saved board's object
  */
 const save = async (board) => DB.saveEntity(ENTITY_NAME, board);
@@ -36,7 +36,7 @@ const save = async (board) => DB.saveEntity(ENTITY_NAME, board);
 /**
  * Update board's data in DB
  * @param {string} id Board id
- * @param {Object} board Board object
+ * @param {Object} board Data for update board
  * @returns {Board} Updated board's object
  */
 const update = async (id, board) => {
@@ -50,7 +50,7 @@ const update = async (id, board) => {
 };
 
 /**
- * Remove board's data from DB
+ * Remove board item from DB
  * @param {string} id Board id
  * @returns void Return nothing if board deletion is successful
  */

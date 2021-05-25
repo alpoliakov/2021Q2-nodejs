@@ -28,7 +28,7 @@ const get = async (id) => {
 
 /**
  * Save user in DB
- * @param {Object} user User object
+ * @param {Object} user Data for create user
  * @returns {User} Saved user's object
  */
 const save = async (user) => DB.saveEntity(ENTITY_NAME, user);
@@ -36,7 +36,7 @@ const save = async (user) => DB.saveEntity(ENTITY_NAME, user);
 /**
  * Update user's data in DB
  * @param {string} id User id
- * @param {Object} user User object
+ * @param {Object} user Data for update user
  * @returns {User} Updated user's object
  */
 const update = async (id, user) => {

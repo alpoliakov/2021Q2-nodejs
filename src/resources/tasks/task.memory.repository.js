@@ -33,14 +33,14 @@ const get = async (boardId, id) => {
 
 /**
  * Save task in DB
- * @param {Object} task Task data
+ * @param {Object} task Data for create task
  * @returns {Task} Saved task's object
  */
 const save = async (task) => DB.saveEntity(ENTITY_NAME, task);
 
 /**
  * Update task's data in DB
- * @param {Object} task Task object
+ * @param {Object} task Data for update task
  * @returns {Task} Updated task's object
  */
 const update = async (task) => {
