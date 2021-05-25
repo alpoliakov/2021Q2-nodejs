@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: startService</title>
+    <title>JSDoc: Module: handlerError</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: startService</h1>
+    <h1 class="page-title">Module: handlerError</h1>
 
     
 
@@ -64,7 +64,7 @@
     
 
     
-    <h4 class="name" id="~startService"><span class="type-signature">(inner) </span>startService<span class="signature">(req, res, next)</span><span class="type-signature"> &rarr; {undefined}</span></h4>
+    <h4 class="name" id="~handlerError"><span class="type-signature">(inner) </span>handlerError<span class="signature">(err, req, res, next)</span><span class="type-signature"> &rarr; {undefined}</span></h4>
     
 
     
@@ -72,7 +72,7 @@
 
 
 <div class="description">
-    <p>My start service Middleware</p>
+    <p>My handler error Middleware</p>
 </div>
 
 
@@ -108,7 +108,7 @@
 
         <tr>
             
-                <td class="name"><code>req</code></td>
+                <td class="name"><code>err</code></td>
             
 
             <td class="type">
@@ -124,7 +124,7 @@
 
             
 
-            <td class="description last"><p>Express request object</p>
+            <td class="description last"><p>Express error object</p>
                 <h6>Properties</h6>
                 
 
@@ -150,7 +150,30 @@
 
         <tr>
             
-                <td class="name"><code>originalUrl</code></td>
+                <td class="name"><code>status</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The status error from express.error</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>message</code></td>
             
 
             <td class="type">
@@ -166,7 +189,7 @@
 
             
 
-            <td class="description last"><p>The original URL</p></td>
+            <td class="description last"><p>The message error from express.error</p></td>
         </tr>
 
     
@@ -174,6 +197,29 @@
 </table>
 
             </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Express request object</p></td>
         </tr>
 
     
@@ -222,7 +268,7 @@
 
         <tr>
             
-                <td class="name"><code>send</code></td>
+                <td class="name"><code>status</code></td>
             
 
             <td class="type">
@@ -238,7 +284,30 @@
 
             
 
-            <td class="description last"><p>The send function from response</p></td>
+            <td class="description last"><p>The status function from response</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sendStatus</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The sendStatus function from response</p></td>
         </tr>
 
     
@@ -309,7 +378,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="utils_startService.js.html">utils/startService.js</a>, <a href="utils_startService.js.html#line13">line 13</a>
+        <a href="errors_handlerError.js.html">errors/handlerError.js</a>, <a href="errors_handlerError.js.html#line20">line 20</a>
     </li></ul></dd>
     
 
@@ -338,7 +407,7 @@
 
         
 <div class="param-desc">
-    <p>We start the service and return nothing</p>
+    <p>Handling errors and returning nothing</p>
 </div>
 
 

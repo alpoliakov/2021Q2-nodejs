@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: errors/notFoundError.js</title>
+    <title>JSDoc: Source: resources/users/user.service.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: errors/notFoundError.js</h1>
+    <h1 class="page-title">Source: resources/users/user.service.js</h1>
 
     
 
@@ -26,26 +26,47 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const { StatusCodes } = require('http-status-codes');
+            <pre class="prettyprint source linenums"><code>const usersRepo = require('./user.memory.repository');
+const User = require('./user.model');
+
+/** @module userService */
 
 /**
- * Class to create Not Found Error object
- * @augments Error
+ * Call the getAll method from the userRepo module
+ * @returns {Array&lt;User>} Array of user objects
  */
-class NotFoundError extends Error {
-  /**
-   * @param {String} message - Informational error message
-   */
-  constructor(message = 'Not Found') {
-    super(message);
-    /**
-     * @property {number} status Status code
-     */
-    this.status = StatusCodes.NOT_FOUND;
-  }
-}
+const getAll = () => usersRepo.getAll();
 
-module.exports = { NOT_FOUND_ERROR: NotFoundError };
+/**
+ * Call the get method from the userRepo module
+ * @param {String} id User id
+ * @returns {User} User object
+ */
+const get = (id) => usersRepo.get(id);
+
+/**
+ * Call the save method from the userRepo module and create User instance
+ * @param {Object} user User data
+ * @returns {User} Saved User instance
+ */
+const save = (user) => usersRepo.save(User.fromRequest(user));
+
+/**
+ * Call the remove method from the userRepo module
+ * @param {String} id User id
+ * @returns void Return nothing if user deletion is successful
+ */
+const remove = (id) => usersRepo.remove(id);
+
+/**
+ * Call the update method from the userRepo module and update User instance
+ * @param {String} id User id
+ * @param {Object} user User data
+ * @returns {User} Updated User instance
+ */
+const update = (id, user) => usersRepo.update(id, user);
+
+module.exports = { getAll, get, save, remove, update };
 </code></pre>
         </article>
     </section>

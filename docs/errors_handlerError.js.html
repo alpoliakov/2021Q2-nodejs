@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: errors/notFoundError.js</title>
+    <title>JSDoc: Source: errors/handlerError.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: errors/notFoundError.js</h1>
+    <h1 class="page-title">Source: errors/handlerError.js</h1>
 
     
 
@@ -27,25 +27,35 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>const { StatusCodes } = require('http-status-codes');
+const { NOT_FOUND_ERROR } = require('./notFoundError');
+
+/** @module handlerError */
 
 /**
- * Class to create Not Found Error object
- * @augments Error
+ * My handler error Middleware
+ * @function
+ * @param {Object} err - Express error object
+ * @param {number} err.status - The status error from express.error
+ * @param {String} err.message - The message error from express.error
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @param {Function} res.status - The status function from response
+ * @param {Function} res.sendStatus - The sendStatus function from response
+ * @param {Function} next - Express next middleware function
+ * @returns {undefined} Handling errors and returning nothing
  */
-class NotFoundError extends Error {
-  /**
-   * @param {String} message - Informational error message
-   */
-  constructor(message = 'Not Found') {
-    super(message);
-    /**
-     * @property {number} status Status code
-     */
-    this.status = StatusCodes.NOT_FOUND;
-  }
-}
 
-module.exports = { NOT_FOUND_ERROR: NotFoundError };
+const handlerError = (err, req, res, next) => {
+  console.error(err);
+  if (err instanceof NOT_FOUND_ERROR) {
+    res.status(err.status).send(err.message);
+  } else if (err) {
+    res.sendStatus(StatusCodes.INTERNAL_SERVER_ERROR);
+  }
+  next();
+};
+
+module.exports = handlerError;
 </code></pre>
         </article>
     </section>

@@ -8,7 +8,7 @@
  * @param {Object} res - Express response object
  * @param {Function} res.send - The send function from response
  * @param {Function} next - Express next middleware function
- * @returns {undefined}
+ * @returns {undefined} We start the service and return nothing
  */
 const startService = (req, res, next) => {
   if (req.originalUrl === '/') {

@@ -6,7 +6,7 @@ const { StatusCodes } = require('http-status-codes');
  */
 class NotFoundError extends Error {
   /**
-   * @param {String} message - Information about the user
+   * @param {String} message - Informational error message
    */
   constructor(message = 'Not Found') {
     super(message);

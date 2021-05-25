@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: NotFoundError</title>
+    <title>JSDoc: Module: noPageExistsError</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: NotFoundError</h1>
+    <h1 class="page-title">Module: noPageExistsError</h1>
 
     
 
@@ -28,9 +28,6 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>NotFoundError<span class="signature">(message)</span><span class="type-signature"></span></h2>
-        
-            <div class="class-description"><p>Class to create Not Found Error object</p></div>
         
     
 </header>
@@ -40,17 +37,43 @@
     
         
 
+        
     
-    <h2>Constructor</h2>
-    
-
-    
-    <h4 class="name" id="NotFoundError"><span class="type-signature"></span>new NotFoundError<span class="signature">(message)</span><span class="type-signature"></span></h4>
-    
+    </div>
 
     
 
+    
 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~noPageExistsError"><span class="type-signature">(inner) </span>noPageExistsError<span class="signature">(req, res, next)</span><span class="type-signature"> &rarr; {Object.&lt;number, string>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>My No Page Exists Error Middleware</p>
+</div>
 
 
 
@@ -75,8 +98,6 @@
         
 
         
-        <th>Default</th>
-        
 
         <th class="last">Description</th>
     </tr>
@@ -87,13 +108,13 @@
 
         <tr>
             
-                <td class="name"><code>message</code></td>
+                <td class="name"><code>req</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">Object</span>
 
 
             
@@ -102,131 +123,35 @@
             
 
             
-                <td class="default">
-                
-                    Not Found
-                
-                </td>
-            
 
-            <td class="description last"><p>Informational error message</p></td>
+            <td class="description last"><p>Express request object</p></td>
         </tr>
 
     
-    </tbody>
-</table>
 
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="errors_notFoundError.js.html">errors/notFoundError.js</a>, <a href="errors_notFoundError.js.html#line7">line 7</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    </div>
-
-    
-        <h3 class="subsection-title">Extends</h3>
-
-        
-
-
-    <ul>
-        <li>Error</li>
-    </ul>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Members</h3>
-
-        
+        <tr>
             
-<h4 class="name" id="status"><span class="type-signature"></span>status<span class="type-signature"></span></h4>
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
 
 
+            
+            </td>
 
+            
 
+            
 
+            <td class="description last"><p>Express response object</p>
+                <h6>Properties</h6>
+                
 
-
-
-
-
-    <h5 class="subsection-title">Properties:</h5>
-
-    
-
-<table class="props">
+<table class="params">
     <thead>
     <tr>
         
@@ -254,7 +179,7 @@
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">function</span>
 
 
             
@@ -264,12 +189,44 @@
 
             
 
-            <td class="description last"><p>Status code</p></td>
+            <td class="description last"><p>The status function from response</p></td>
         </tr>
 
     
     </tbody>
 </table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>next</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Express next middleware function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
 
 
 
@@ -303,7 +260,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="errors_notFoundError.js.html">errors/notFoundError.js</a>, <a href="errors_notFoundError.js.html#line16">line 16</a>
+        <a href="errors_noPageExistsError.js.html">errors/noPageExistsError.js</a>, <a href="errors_noPageExistsError.js.html#line14">line 14</a>
     </li></ul></dd>
     
 
@@ -319,9 +276,43 @@
 
 
 
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
         
+<div class="param-desc">
+    <p>Returning an error object for a non-exists page</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object.&lt;number, string></span>
+
+
+    </dd>
+</dl>
+
     
 
+
+
+
+
+        
     
 
     

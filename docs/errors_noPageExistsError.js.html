@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: errors/notFoundError.js</title>
+    <title>JSDoc: Source: errors/noPageExistsError.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: errors/notFoundError.js</h1>
+    <h1 class="page-title">Source: errors/noPageExistsError.js</h1>
 
     
 
@@ -28,24 +28,21 @@
         <article>
             <pre class="prettyprint source linenums"><code>const { StatusCodes } = require('http-status-codes');
 
-/**
- * Class to create Not Found Error object
- * @augments Error
- */
-class NotFoundError extends Error {
-  /**
-   * @param {String} message - Informational error message
-   */
-  constructor(message = 'Not Found') {
-    super(message);
-    /**
-     * @property {number} status Status code
-     */
-    this.status = StatusCodes.NOT_FOUND;
-  }
-}
+/** @module noPageExistsError */
 
-module.exports = { NOT_FOUND_ERROR: NotFoundError };
+/**
+ * My No Page Exists Error Middleware
+ * @function
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @param {Function} res.status - The status function from response
+ * @param {Function} next - Express next middleware function
+ * @returns {Object&lt;number, string>} Returning an error object for a non-exists page
+ */
+const noPageExistsError = (req, res) =>
+  res.status(StatusCodes.NOT_FOUND).send('No such page exists!');
+
+module.exports = noPageExistsError;
 </code></pre>
         </article>
     </section>
