@@ -1,11 +1,28 @@
 const { v4: uuidv4 } = require('uuid');
 
 /**
+ * Data for create instance of User class.
+ * @typedef {Object} UserData
+ * @property {String} id - User's id
+ * @property {String} name - User's name
+ * @property {String} login - User's login
+ * @property {String} password - User's password
+ */
+
+/**
+ * Destructuring the user object.
+ * @typedef {Object} DestructuringUserData
+ * @property {String} id - User's id
+ * @property {String} name - User's name
+ * @property {String} login - User's login
+ */
+
+/**
  * Class to create user object
  */
 class User {
   /**
-   * @param {Object} params - Information about the user
+   * @param {UserData} params - Information about the user
    */
   constructor({
     id = uuidv4(),
@@ -33,8 +50,8 @@ class User {
 
   /**
    * @property {Function} toResponse Destructuring the user object
-   * @param {{id: string, name: string, login: string, password: string}} user User's object
-   * @returns {{id: string, name: string, login: string}} return destructuring the user object without password
+   * @param {UserData} user User's object
+   * @returns {DestructuringUserData} return destructuring the user object without password
    */
   static toResponse(user) {
     const { id, name, login } = user;
@@ -43,7 +60,7 @@ class User {
 
   /**
    * @property {Function} fromRequest Create new User's instance
-   * @param {Object} body Params (id, name, login, password) for create new User instance
+   * @param {UserData} body Params (id, name, login, password) for create new User instance
    * @returns {User} return new User's object
    */
   static fromRequest(body) {

@@ -1,11 +1,23 @@
 const { v4: uuidv4 } = require('uuid');
 
 /**
+ * Data for create instance of Task class.
+ * @typedef {Object} TaskData
+ * @property {String} id - Task's id
+ * @property {String} title - Task's title
+ * @property {Number} order - Task's order
+ * @property {String} description - Task's description
+ * @property {String|null} userId - User's id
+ * @property {String|null} boardId - Board's id
+ * @property {String|null} columnId - Column's id
+ */
+
+/**
  * Class to create task object
  */
 class Task {
   /**
-   * @param {Object} params - Information about the task
+   * @param {TaskData} params - Information about the task
    */
   constructor({
     id = uuidv4(),
@@ -48,7 +60,7 @@ class Task {
 
   /**
    * @property {Function} fromRequest Create new Task's instance
-   * @param {Object} body Params (id, title, order, description, userId, boardId, columnId) for create new Task instance
+   * @param {TaskData} body Params (id, title, order, description, userId, boardId, columnId) for create new Task instance
    * @returns {Task} return new Task's object
    */
   static fromRequest(body) {

@@ -1,16 +1,27 @@
 const { v4: uuidv4 } = require('uuid');
+const Column = require('../columns/column.model');
+
+/**
+ * Data for create instance of Board class.
+ * @typedef {Object} BoardData
+ * @property {String} id - Board's id
+ * @property {String} title - Board's title
+ * @property {Column[]} columns - Board's columns
+ */
 
 /**
  * Class to create board object
  */
 class Board {
   /**
-   * @param {Object} params - Information about the board
+   * @param {BoardData} params - Information about the board
    */
   constructor({
     id = uuidv4(),
     title = 'Autotest board',
-    columns = [{ title: 'Backlog', order: 1 }],
+    columns = [
+      Column.fromRequest({ id: uuidv4(), title: 'Backlog', order: 1 }),
+    ],
   } = {}) {
     /**
      * @property {string} id Board id
@@ -21,14 +32,14 @@ class Board {
      */
     this.title = title;
     /**
-     * @property {Array<Object>} columns Array column objects
+     * @property {Array<Column>} columns Array column objects
      */
     this.columns = columns;
   }
 
   /**
    * @property {Function} fromRequest Create new Board's instance
-   * @param {Object} body Params (id, title, columns) for create new Board instance
+   * @param {BoardData} body Params (id, title, columns) for create new Board instance
    * @returns {Board} return new Board's object
    */
   static fromRequest(body) {
