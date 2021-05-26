@@ -34,5 +34,5 @@ export interface IDB {
   Tasks: ITask[];
   fixStructureUsers: (user: IUser) => void;
   fixStructureBoards: (board: IBoard) => void;
-  fixStructureTasks: () => void;
+  fixStructureTasks: () => undefined;
 }

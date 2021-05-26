@@ -7,7 +7,7 @@ const DB: IDB = {
   Users: [],
   Boards: [],
   Tasks: [],
-  fixStructureUsers: (user: IUser) => {
+  fixStructureUsers: (user) => {
     if (user) {
       DB.Tasks = [
         ...DB.Tasks.filter((task) => task).map((task) => {
@@ -23,12 +23,10 @@ const DB: IDB = {
       DB.Tasks = [...DB.Tasks.filter((task) => task && task.boardId !== board.id)];
     }
   },
-  fixStructureTasks: () => {
-    console.log('hi');
-  },
+  fixStructureTasks: () => undefined,
 };
 
-const getAllEntities = (nameEntity: string) => DB[nameEntity]?.filter(<T>(item: T) => item);
+const getAllEntities = (nameEntity: string) => DB[nameEntity].filter(<T>(item: T) => item);
 
 const getEntity = (nameEntity: string, id: string) => {
   const entities = DB[nameEntity]
