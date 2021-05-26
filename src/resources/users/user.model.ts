@@ -1,11 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-interface IUser {
-  id: string;
-  name: string;
-  login: string;
-  password?: string;
-}
+import { IUser } from '../../ts/interfaces/app_interfaces';
 
 class User implements IUser {
   id: string;

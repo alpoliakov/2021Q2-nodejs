@@ -1,6 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 
-import { TypeHandlerError } from '../types/express.types';
+import { TypeHandlerError } from '../ts/types/express.types';
 import { NOT_FOUND_ERROR } from './notFoundError';
 
 const handlerError: TypeHandlerError = (err, _req, res, next) => {

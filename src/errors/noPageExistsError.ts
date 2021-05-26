@@ -1,4 +1,4 @@
-import { TypeExpressFunction } from '../types/express.types';
+import { TypeExpressFunction } from '../ts/types/express.types';
 
 const { StatusCodes } = require('http-status-codes');
 
