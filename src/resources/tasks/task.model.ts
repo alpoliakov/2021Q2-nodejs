@@ -35,7 +35,7 @@ class Task implements ITask {
     this.columnId = columnId;
   }
 
-  static fromRequest<T>(body: T) {
+  static fromRequest<T>(body: T): ITask {
     return new Task(body);
   }
 }

@@ -27,12 +27,25 @@ export interface ITask {
   columnId: null | string;
 }
 
+export type TypeFixStructureUsers = (user: IUser) => void;
+
+export type TypeFixStructureBoards = (board: IBoard) => void;
+
+export type TypeFixStructureTasks = () => undefined;
+
 export interface IDB {
-  [key: string]: Array<IUser> | Array<IBoard> | Array<ITask> | any;
+  [key: string]:
+    | Array<IUser>
+    | Array<IBoard>
+    | Array<ITask>
+    | TypeFixStructureUsers
+    | TypeFixStructureBoards
+    | TypeFixStructureTasks
+    | any;
   Users: IUser[];
   Boards: IBoard[];
   Tasks: ITask[];
-  fixStructureUsers: (user: IUser) => void;
-  fixStructureBoards: (board: IBoard) => void;
-  fixStructureTasks: () => undefined;
+  fixStructureUsers: TypeFixStructureUsers;
+  fixStructureBoards: TypeFixStructureBoards;
+  fixStructureTasks: TypeFixStructureTasks;
 }

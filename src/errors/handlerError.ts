@@ -3,7 +3,7 @@ import { StatusCodes } from 'http-status-codes';
 import { TypeHandlerError } from '../ts/types/express.types';
 import { NOT_FOUND_ERROR } from './notFoundError';
 
-const handlerError: TypeHandlerError = (err, _req, res, next) => {
+const handlerError: TypeHandlerError = (err, _req, res, next): void => {
   console.error(err);
   if (err instanceof NOT_FOUND_ERROR) {
     res.status(err.status).send(err.message);

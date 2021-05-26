@@ -1,7 +1,7 @@
 import Board from '../resources/boards/board.model';
 import Task from '../resources/tasks/task.model';
 import User from '../resources/users/user.model';
-import { IBoard, IDB, ITask, IUser } from '../ts/interfaces/app_interfaces';
+import { IDB } from '../ts/interfaces/app_interfaces';
 
 const DB: IDB = {
   Users: [],
@@ -9,36 +9,42 @@ const DB: IDB = {
   Tasks: [],
   fixStructureUsers: (user) => {
     if (user) {
-      DB.Tasks = [
-        ...DB.Tasks.filter((task) => task).map((task) => {
-          const item = { ...task };
-          item.userId = task.userId === user.id ? null : task.userId;
-          return item;
-        }),
-      ];
+      DB.Tasks.forEach((task) => {
+        task.userId = task.userId === user.id ? null : task.userId;
+      });
     }
   },
   fixStructureBoards: (board) => {
     if (board) {
-      DB.Tasks = [...DB.Tasks.filter((task) => task && task.boardId !== board.id)];
+      DB.Tasks = DB.Tasks.filter((task) => task && task.boardId !== board.id);
     }
   },
   fixStructureTasks: () => undefined,
 };
 
-const getAllEntities = (nameEntity: string) => DB[nameEntity].filter(<T>(item: T) => item);
+type TypeAllEntities = (data: string) => [];
 
-const getEntity = (nameEntity: string, id: string) => {
-  const entities = DB[nameEntity]
-    .filter(<T>(item: T) => item)
-    .filter((item: { id: string }) => item.id === id);
+// type TypeRemoveEntity = (name: string, id: string) => Promise<>;
+
+const getAllEntities: TypeAllEntities = (nameEntity) =>
+  DB[nameEntity].filter(<T>(item: T): T => item);
+
+const getEntity = async (nameEntity: string, id: string) => {
+  const entities = await DB[nameEntity].filter((item: { id: string }) => item.id === id);
 
   if (entities.length > 1) {
     console.error(`DB data is damaged. Entity: ${nameEntity}. EntityID: ${id}.`);
     throw Error('DB data is wrong!');
   }
 
-  return entities[0];
+  const entity = entities[0];
+  return entity;
+};
+
+const saveEntity = <D>(nameEntity: string, entity: D): D => {
+  DB[nameEntity].push(entity);
+
+  return entity;
 };
 
 const updateEntity = async <T>(nameEntity: string, id: string, entity: T): Promise<T> => {
@@ -51,7 +57,7 @@ const updateEntity = async <T>(nameEntity: string, id: string, entity: T): Promi
   return getEntity(nameEntity, id);
 };
 
-const removeEntity = async (nameEntity: string, id: string) => {
+const removeEntity = async <D>(nameEntity: string, id: string): Promise<D> => {
   const entity = await getEntity(nameEntity, id);
 
   if (entity) {
@@ -60,12 +66,6 @@ const removeEntity = async (nameEntity: string, id: string) => {
   }
 
   return entity;
-};
-
-const saveEntity = (nameEntity: string, entity: IUser | IBoard | ITask) => {
-  DB[nameEntity].push(entity);
-
-  return getEntity(nameEntity, entity.id);
 };
 
 (() => {

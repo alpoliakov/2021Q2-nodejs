@@ -19,12 +19,12 @@ const get = async (id: string): Promise<IUser> => {
   return user;
 };
 
-const save = async (user: IUser) => {
+const save = async (user: IUser): Promise<IUser> => {
   const newUser = await DB.saveEntity(ENTITY_NAME, user);
   return newUser;
 };
 
-const update = async (id: string, user: IUser) => {
+const update = async (id: string, user: IUser): Promise<IUser> => {
   const entity = await DB.updateEntity(ENTITY_NAME, id, user);
 
   if (!entity) {
@@ -34,7 +34,7 @@ const update = async (id: string, user: IUser) => {
   return entity;
 };
 
-const remove = async (id: string) => {
+const remove = async (id: string): Promise<void> => {
   if (!(await DB.removeEntity(ENTITY_NAME, id))) {
     throw new NOT_FOUND_ERROR(`Couldn't find a user with id: ${id}`);
   }
