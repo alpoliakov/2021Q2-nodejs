@@ -16,7 +16,7 @@ const get = async (id: string): Promise<IUser> => {
     throw new NOT_FOUND_ERROR(`Couldn't find a user with id: ${id}`);
   }
 
-  return user;
+  return user as IUser;
 };
 
 const save = async (user: IUser): Promise<IUser> => {
@@ -31,7 +31,7 @@ const update = async (id: string, user: IUser): Promise<IUser> => {
     throw new NOT_FOUND_ERROR(`Couldn't find a user with id: ${id}`);
   }
 
-  return entity;
+  return entity as IUser;
 };
 
 const remove = async (id: string): Promise<void> => {

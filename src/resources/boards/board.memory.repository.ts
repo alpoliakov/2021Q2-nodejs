@@ -16,7 +16,7 @@ const get = async (id: string): Promise<IBoard> => {
     throw new NOT_FOUND_ERROR(`Couldn't find a board with id: ${id}`);
   }
 
-  return board;
+  return board as IBoard;
 };
 
 const save = async (board: IBoard): Promise<IBoard> => {
@@ -31,7 +31,7 @@ const update = async (id: string, board: IBoard): Promise<IBoard> => {
     throw new NOT_FOUND_ERROR(`Couldn't find a board with id: ${id}`);
   }
 
-  return updatedBoard;
+  return updatedBoard as IBoard;
 };
 
 const remove = async (id: string): Promise<void> => {

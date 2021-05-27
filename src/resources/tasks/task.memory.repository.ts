@@ -15,11 +15,11 @@ const getAll = async (boardId: string): Promise<ITask[]> => {
 const get = async (boardId: string, id: string): Promise<ITask> => {
   const task = await DB.getEntity(ENTITY_NAME, id);
 
-  if (!task || task.boardId !== boardId) {
+  if (!task || (task as ITask).boardId !== boardId) {
     throw new NOT_FOUND_ERROR(`Couldn't find a task with id: ${id} and boardId: ${boardId}`);
   }
 
-  return task;
+  return task as ITask;
 };
 
 const save = async (task: ITask): Promise<ITask> => {
@@ -36,7 +36,7 @@ const update = async (task: ITask): Promise<ITask> => {
     );
   }
 
-  return updatedTask;
+  return updatedTask as ITask;
 };
 
 const remove = async (boardId: string, id: string): Promise<void> => {
