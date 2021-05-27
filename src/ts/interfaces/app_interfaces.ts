@@ -33,18 +33,20 @@ export type TypeFixStructureBoards = (board: IBoard) => void;
 
 export type TypeFixStructureTasks = () => undefined;
 
+export type TypeValueDB =
+  | Array<IUser>
+  | Array<IBoard>
+  | Array<ITask>
+  | TypeFixStructureUsers
+  | TypeFixStructureBoards
+  | TypeFixStructureTasks
+  | any;
+
 export interface IDB {
-  [key: string]:
-    | Array<IUser>
-    | Array<IBoard>
-    | Array<ITask>
-    | TypeFixStructureUsers
-    | TypeFixStructureBoards
-    | TypeFixStructureTasks
-    | any;
-  Users: IUser[];
-  Boards: IBoard[];
-  Tasks: ITask[];
+  [key: string]: TypeValueDB;
+  Users: Array<IUser>;
+  Boards: Array<IBoard>;
+  Tasks: Array<ITask>;
   fixStructureUsers: TypeFixStructureUsers;
   fixStructureBoards: TypeFixStructureBoards;
   fixStructureTasks: TypeFixStructureTasks;

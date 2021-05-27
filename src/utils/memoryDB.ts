@@ -24,10 +24,7 @@ const DB: IDB = {
 
 type TypeAllEntities = (data: string) => [];
 
-// type TypeRemoveEntity = (name: string, id: string) => Promise<>;
-
-const getAllEntities: TypeAllEntities = (nameEntity) =>
-  DB[nameEntity].filter(<T>(item: T): T => item);
+const getAllEntities: TypeAllEntities = (nameEntity) => DB[nameEntity];
 
 const getEntity = async (nameEntity: string, id: string) => {
   const entities = await DB[nameEntity].filter((item: { id: string }) => item.id === id);
