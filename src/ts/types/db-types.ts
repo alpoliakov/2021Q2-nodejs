@@ -2,7 +2,7 @@ import { IBoard, ITask, IUser } from '../interfaces/app_interfaces';
 
 export type TypeEntities = IUser | IBoard | ITask;
 
-export type TypeAllEntities = (data: string) => [];
+export type TypeAllEntities = (data: string) => Array<TypeEntities>;
 
 export type TypeGetRemoveEntity = (name: string, id: string) => Promise<TypeEntities>;
 

@@ -5,11 +5,10 @@ import * as DB from '../../utils/memoryDB';
 const ENTITY_NAME = 'Tasks';
 
 const getAll = async (boardId: string): Promise<ITask[]> => {
-  const tasks = await DB.getAllEntities(ENTITY_NAME).filter(
-    (task: ITask) => task.boardId === boardId,
-  );
+  const tasks = await DB.getAllEntities(ENTITY_NAME);
+  const result = (tasks as ITask[]).filter((task) => task.boardId === boardId);
 
-  return tasks;
+  return result as ITask[];
 };
 
 const get = async (boardId: string, id: string): Promise<ITask> => {
@@ -24,7 +23,7 @@ const get = async (boardId: string, id: string): Promise<ITask> => {
 
 const save = async (task: ITask): Promise<ITask> => {
   const newTask = await DB.saveEntity(ENTITY_NAME, task);
-  return newTask;
+  return newTask as ITask;
 };
 
 const update = async (task: ITask): Promise<ITask> => {

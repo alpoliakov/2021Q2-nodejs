@@ -6,7 +6,7 @@ const ENTITY_NAME = 'Users';
 
 const getAll = async (): Promise<IUser[]> => {
   const users = await DB.getAllEntities(ENTITY_NAME);
-  return users;
+  return users as IUser[];
 };
 
 const get = async (id: string): Promise<IUser> => {
@@ -21,7 +21,7 @@ const get = async (id: string): Promise<IUser> => {
 
 const save = async (user: IUser): Promise<IUser> => {
   const newUser = await DB.saveEntity(ENTITY_NAME, user);
-  return newUser;
+  return newUser as IUser;
 };
 
 const update = async (id: string, user: IUser): Promise<IUser> => {

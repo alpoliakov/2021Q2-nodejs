@@ -25,20 +25,21 @@ export interface ITask extends IColumn {
   columnId: null | string;
 }
 
-export type TypeFixStructureUsers = (user: IUser) => void;
+export type TypeFixStructureUsers = (user: { id: string }) => void;
 
-export type TypeFixStructureBoards = (board: IBoard) => void;
+export type TypeFixStructureBoards = (board: { id: string }) => void;
 
 export type TypeFixStructureTasks = () => undefined;
 
+export type TypeMethods = TypeFixStructureUsers | TypeFixStructureBoards | TypeFixStructureTasks;
+
 export type TypeValueDB =
-  | Array<IUser>
-  | Array<IBoard>
-  | Array<ITask>
+  | IUser[]
+  | IBoard[]
+  | ITask[]
   | TypeFixStructureUsers
   | TypeFixStructureBoards
-  | TypeFixStructureTasks
-  | any;
+  | TypeFixStructureTasks;
 
 export interface IDB {
   [key: string]: TypeValueDB;

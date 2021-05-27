@@ -3,7 +3,7 @@ import 'reflect-metadata';
 import express from 'express';
 import path from 'path';
 import swaggerUI from 'swagger-ui-express';
-import YAML from 'yamljs';
+import * as YAML from 'yamljs';
 
 import handlerError from './errors/handlerError';
 import noPageExistsError from './errors/noPageExistsError';

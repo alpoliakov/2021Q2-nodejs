@@ -6,7 +6,7 @@ const ENTITY_NAME = 'Boards';
 
 const getAll = async (): Promise<IBoard[]> => {
   const boards = await DB.getAllEntities(ENTITY_NAME);
-  return boards;
+  return boards as IBoard[];
 };
 
 const get = async (id: string): Promise<IBoard> => {
@@ -21,7 +21,7 @@ const get = async (id: string): Promise<IBoard> => {
 
 const save = async (board: IBoard): Promise<IBoard> => {
   const newBoard = await DB.saveEntity(ENTITY_NAME, board);
-  return newBoard;
+  return newBoard as IBoard;
 };
 
 const update = async (id: string, board: IBoard): Promise<IBoard> => {

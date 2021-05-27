@@ -1,8 +1,13 @@
 import Board from '../resources/boards/board.model';
 import Task from '../resources/tasks/task.model';
 import User from '../resources/users/user.model';
-import { IDB } from '../ts/interfaces/app_interfaces';
-import { TypeAllEntities, TypeGetRemoveEntity, TypeUpdateEntity } from '../ts/types/db-types';
+import { IBoard, IDB, IUser, TypeMethods } from '../ts/interfaces/app_interfaces';
+import {
+  TypeAllEntities,
+  TypeEntities,
+  TypeGetRemoveEntity,
+  TypeUpdateEntity,
+} from '../ts/types/db-types';
 
 const DB: IDB = {
   Users: [],
@@ -23,22 +28,23 @@ const DB: IDB = {
   fixStructureTasks: () => undefined,
 };
 
-const getAllEntities: TypeAllEntities = (nameEntity) => DB[nameEntity];
+const getAllEntities: TypeAllEntities = (nameEntity) => DB[nameEntity] as Array<TypeEntities>;
 
 const getEntity: TypeGetRemoveEntity = async (nameEntity, id) => {
-  const entities = await DB[nameEntity].filter((item: { id: string }) => item.id === id);
+  const entities = await (DB[nameEntity] as Array<TypeEntities>).filter(
+    (item: { id: string }) => item.id === id,
+  );
 
   if (entities.length > 1) {
     console.error(`DB data is damaged. Entity: ${nameEntity}. EntityID: ${id}.`);
     throw Error('DB data is wrong!');
   }
 
-  const entity = entities[0];
-  return entity;
+  return entities[0];
 };
 
-const saveEntity = <D>(nameEntity: string, entity: D): D => {
-  DB[nameEntity].push(entity);
+const saveEntity = (nameEntity: string, entity: TypeEntities): TypeEntities => {
+  (DB[nameEntity] as Array<TypeEntities>).push(entity);
 
   return entity;
 };
@@ -47,7 +53,9 @@ const updateEntity: TypeUpdateEntity = async (nameEntity, id, entity) => {
   const oldEntity = await getEntity(nameEntity, id);
 
   if (oldEntity) {
-    DB[nameEntity][DB[nameEntity].indexOf(oldEntity)] = { id, ...entity };
+    (DB[nameEntity] as Array<TypeEntities>)[
+      (DB[nameEntity] as Array<TypeEntities>).indexOf(oldEntity)
+    ] = { id, ...entity };
   }
 
   return getEntity(nameEntity, id);
@@ -57,8 +65,14 @@ const removeEntity: TypeGetRemoveEntity = async (nameEntity, id) => {
   const entity = await getEntity(nameEntity, id);
 
   if (entity) {
-    DB[`fixStructure${nameEntity}`](entity);
-    DB[nameEntity] = [...DB[nameEntity].filter((item: { id: string }) => item && item.id !== id)];
+    const result = nameEntity === 'Users' ? <IUser>entity : <IBoard>entity;
+
+    (DB[`fixStructure${nameEntity}`] as TypeMethods)(result);
+    (DB[nameEntity] as Array<TypeEntities>) = [
+      ...(DB[nameEntity] as Array<TypeEntities>).filter(
+        (item: { id: string }) => item && item.id !== id,
+      ),
+    ];
   }
 
   return entity;
