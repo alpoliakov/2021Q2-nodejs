@@ -1,6 +1,7 @@
 import express from 'express';
 import { StatusCodes } from 'http-status-codes';
 
+import { NOT_FOUND_ERROR } from '../../errors/notFoundError';
 import wrapAsyncFunc from '../../utils/wrapAsyncFunc';
 
 const boardsService = require('./board.service');
@@ -27,6 +28,11 @@ router
   .get(
     wrapAsyncFunc(async (req, res) => {
       const { id } = req.params;
+
+      if (!id) {
+        throw new NOT_FOUND_ERROR('Missing Id');
+      }
+
       const board = await boardsService.get(id);
       res.status(StatusCodes.OK).send(board);
     }),
@@ -34,6 +40,11 @@ router
   .put(
     wrapAsyncFunc(async (req, res) => {
       const { id } = req.params;
+
+      if (!id) {
+        throw new NOT_FOUND_ERROR('Missing Id');
+      }
+
       const board = await boardsService.update(id, req.body);
       res.status(StatusCodes.OK).send(board);
     }),
@@ -41,6 +52,11 @@ router
   .delete(
     wrapAsyncFunc(async (req, res) => {
       const { id } = req.params;
+
+      if (!id) {
+        throw new NOT_FOUND_ERROR('Missing Id');
+      }
+
       await boardsService.remove(id);
       res.sendStatus(StatusCodes.NO_CONTENT);
     }),
