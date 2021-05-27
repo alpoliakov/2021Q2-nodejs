@@ -5,22 +5,20 @@ export interface IUser {
   password?: string;
 }
 
-export interface IColumn {
+export interface IBase {
   id: string;
   title: string;
+}
+
+export interface IColumn extends IBase {
   order: number;
 }
 
-export interface IBoard {
-  id: string;
-  title: string;
+export interface IBoard extends IBase {
   columns: IColumn[];
 }
 
-export interface ITask {
-  id: string;
-  title: string;
-  order: number;
+export interface ITask extends IColumn {
   description: string;
   userId: null | string;
   boardId: null | string;
