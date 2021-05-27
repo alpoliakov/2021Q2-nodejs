@@ -1,7 +1,8 @@
 import Board from '../resources/boards/board.model';
 import Task from '../resources/tasks/task.model';
 import User from '../resources/users/user.model';
-import { IBoard, IDB, ITask, IUser } from '../ts/interfaces/app_interfaces';
+import { IDB } from '../ts/interfaces/app_interfaces';
+import { TypeAllEntities, TypeGetRemoveEntity, TypeUpdateEntity } from '../ts/types/db-types';
 
 const DB: IDB = {
   Users: [],
@@ -22,13 +23,9 @@ const DB: IDB = {
   fixStructureTasks: () => undefined,
 };
 
-type Entities = IUser | IBoard | ITask;
-
-type TypeAllEntities = (data: string) => [];
-
 const getAllEntities: TypeAllEntities = (nameEntity) => DB[nameEntity];
 
-const getEntity = async (nameEntity: string, id: string): Promise<Entities> => {
+const getEntity: TypeGetRemoveEntity = async (nameEntity, id) => {
   const entities = await DB[nameEntity].filter((item: { id: string }) => item.id === id);
 
   if (entities.length > 1) {
@@ -46,11 +43,7 @@ const saveEntity = <D>(nameEntity: string, entity: D): D => {
   return entity;
 };
 
-const updateEntity = async (
-  nameEntity: string,
-  id: string,
-  entity: Entities,
-): Promise<Promise<Entities>> => {
+const updateEntity: TypeUpdateEntity = async (nameEntity, id, entity) => {
   const oldEntity = await getEntity(nameEntity, id);
 
   if (oldEntity) {
@@ -60,7 +53,7 @@ const updateEntity = async (
   return getEntity(nameEntity, id);
 };
 
-const removeEntity = async (nameEntity: string, id: string): Promise<Entities> => {
+const removeEntity: TypeGetRemoveEntity = async (nameEntity, id) => {
   const entity = await getEntity(nameEntity, id);
 
   if (entity) {
