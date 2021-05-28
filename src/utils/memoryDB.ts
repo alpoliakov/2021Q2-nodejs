@@ -3,6 +3,7 @@ import Task from '../resources/tasks/task.model';
 import User from '../resources/users/user.model';
 import { IBoard, IDB, IUser, TypeMethods } from '../ts/interfaces/app_interfaces';
 import {
+  TestEnum,
   TypeAllEntities,
   TypeEntities,
   TypeGetRemoveEntity,
@@ -40,7 +41,7 @@ const getEntity: TypeGetRemoveEntity = async (nameEntity, id) => {
     throw Error('DB data is wrong!');
   }
 
-  return entities[0];
+  return entities[TestEnum.FirstIndex];
 };
 
 const saveEntity = (nameEntity: string, entity: TypeEntities): TypeEntities => {

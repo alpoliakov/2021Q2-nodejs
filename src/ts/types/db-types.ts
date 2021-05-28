@@ -11,3 +11,7 @@ export type TypeUpdateEntity = (
   id: string,
   entity: TypeEntities,
 ) => Promise<TypeEntities>;
+
+export enum TestEnum {
+  FirstIndex,
+}
