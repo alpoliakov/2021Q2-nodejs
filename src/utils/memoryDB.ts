@@ -6,7 +6,7 @@ import {
   TestEnum,
   TypeAllEntities,
   TypeEntities,
-  TypeGetRemoveEntity,
+  TypeGetOrRemoveEntity,
   TypeUpdateEntity,
 } from '../ts/types/db-types';
 
@@ -31,7 +31,7 @@ const DB: IDB = {
 
 const getAllEntities: TypeAllEntities = (nameEntity) => DB[nameEntity] as Array<TypeEntities>;
 
-const getEntity: TypeGetRemoveEntity = async (nameEntity, id) => {
+const getEntity: TypeGetOrRemoveEntity = async (nameEntity, id) => {
   const entities = await (DB[nameEntity] as Array<TypeEntities>).filter(
     (item: { id: string }) => item.id === id,
   );
@@ -62,7 +62,7 @@ const updateEntity: TypeUpdateEntity = async (nameEntity, id, entity) => {
   return getEntity(nameEntity, id);
 };
 
-const removeEntity: TypeGetRemoveEntity = async (nameEntity, id) => {
+const removeEntity: TypeGetOrRemoveEntity = async (nameEntity, id) => {
   const entity = await getEntity(nameEntity, id);
 
   if (entity) {

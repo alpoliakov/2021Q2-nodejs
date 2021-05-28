@@ -4,7 +4,7 @@ export type TypeEntities = IUser | IBoard | ITask;
 
 export type TypeAllEntities = (data: string) => Array<TypeEntities>;
 
-export type TypeGetRemoveEntity = (name: string, id: string) => Promise<TypeEntities>;
+export type TypeGetOrRemoveEntity = (name: string, id: string) => Promise<TypeEntities>;
 
 export type TypeUpdateEntity = (
   name: string,
