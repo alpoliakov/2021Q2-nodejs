@@ -1,7 +1,7 @@
 import Board from '../resources/boards/board.model';
 import Task from '../resources/tasks/task.model';
 import User from '../resources/users/user.model';
-import { IBoard, IDB, IUser, TypeMethods } from '../ts/interfaces/app_interfaces';
+import { IBoard, IDB, IUser, TypeFixStructure } from '../ts/interfaces/app_interfaces';
 import {
   TestEnum,
   TypeAllEntities,
@@ -68,7 +68,7 @@ const removeEntity: TypeGetOrRemoveEntity = async (nameEntity, id) => {
   if (entity) {
     const result = nameEntity === 'Users' ? <IUser>entity : <IBoard>entity;
 
-    (DB[`fixStructure${nameEntity}`] as TypeMethods)(result);
+    (DB[`fixStructure${nameEntity}`] as TypeFixStructure)(result);
     (DB[nameEntity] as Array<TypeEntities>) = [
       ...(DB[nameEntity] as Array<TypeEntities>).filter(
         (item: { id: string }) => item && item.id !== id,

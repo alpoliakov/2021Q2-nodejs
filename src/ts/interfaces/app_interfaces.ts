@@ -27,11 +27,7 @@ export interface ITask extends IColumn {
 
 export type TypeFixStructure = (data: { id: string }) => void;
 
-export type TypeFixStructureTasks = () => undefined;
-
-export type TypeMethods = TypeFixStructure | TypeFixStructureTasks;
-
-export type TypeValueDB = IUser[] | IBoard[] | ITask[] | TypeFixStructure | TypeFixStructureTasks;
+export type TypeValueDB = IUser[] | IBoard[] | ITask[] | TypeFixStructure;
 
 export interface IDB {
   [key: string]: TypeValueDB;
@@ -40,5 +36,5 @@ export interface IDB {
   Tasks: Array<ITask>;
   fixStructureUsers: TypeFixStructure;
   fixStructureBoards: TypeFixStructure;
-  fixStructureTasks: TypeFixStructureTasks;
+  fixStructureTasks: TypeFixStructure;
 }
