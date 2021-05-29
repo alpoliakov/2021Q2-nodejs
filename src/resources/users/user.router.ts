@@ -2,6 +2,7 @@ import express from 'express';
 import { StatusCodes } from 'http-status-codes';
 
 import { NOT_FOUND_ERROR } from '../../errors/notFoundError';
+import { IUser } from '../../ts/interfaces/app_interfaces';
 import wrapAsyncFunc from '../../utils/wrapAsyncFunc';
 import User from './user.model';
 import * as usersService from './user.service';
@@ -13,7 +14,7 @@ router
   .get(
     wrapAsyncFunc(async (_req, res) => {
       const users = await usersService.getAll();
-      await res.json(users.map(User.toResponse));
+      await res.json((users as IUser[]).map(User.toResponse));
     }),
   )
   .post(

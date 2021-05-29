@@ -1,15 +1,16 @@
 import { IBoard } from '../../ts/interfaces/app_interfaces';
+import { IFindAll, IFindOneOrRemove, ISave, IUpdate } from '../../ts/interfaces/layout_interfaces';
 import * as boardsRepo from './board.memory.repository';
 import Board from './board.model';
 
-const getAll = (): Promise<IBoard[]> => boardsRepo.getAll();
+const getAll: IFindAll<IBoard> = () => boardsRepo.getAll();
 
-const get = (id: string): Promise<IBoard> => boardsRepo.get(id);
+const get: IFindOneOrRemove<string, IBoard> = (id) => boardsRepo.get(id);
 
-const save = (board: IBoard): Promise<IBoard> => boardsRepo.save(Board.fromRequest(board));
+const save: ISave<IBoard> = (board) => boardsRepo.save(Board.fromRequest(board));
 
-const update = (id: string, board: IBoard): Promise<IBoard> => boardsRepo.update(id, board);
+const update: IUpdate<string, IBoard> = (id, board) => boardsRepo.update(id, board);
 
-const remove = (id: string): Promise<void> => boardsRepo.remove(id);
+const remove: IFindOneOrRemove<string, void> = (id) => boardsRepo.remove(id);
 
 module.exports = { getAll, get, save, update, remove };

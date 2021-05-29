@@ -15,7 +15,7 @@ class Column implements IColumn {
     this.order = order;
   }
 
-  static fromRequest(body: IColumn): IColumn {
+  static fromRequest<T>(body: T): IColumn {
     return new Column(body);
   }
 }

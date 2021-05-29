@@ -23,7 +23,7 @@ class User implements IUser {
     return { id, name, login };
   }
 
-  static fromRequest(body: IUser): IUser {
+  static fromRequest<T>(body: T): IUser {
     return new User(body);
   }
 }

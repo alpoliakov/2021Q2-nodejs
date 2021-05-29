@@ -20,7 +20,7 @@ class Board {
     this.columns = columns;
   }
 
-  static fromRequest(body: IBoard): IBoard {
+  static fromRequest<T>(body: T): IBoard {
     return new Board(body);
   }
 }

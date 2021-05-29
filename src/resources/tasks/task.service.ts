@@ -1,15 +1,16 @@
 import { ITask } from '../../ts/interfaces/app_interfaces';
+import { IFindAllTasks, IFindOneOrRemoveTasks, ISave } from '../../ts/interfaces/layout_interfaces';
 import * as tasksRepo from './task.memory.repository';
 import Task from './task.model';
 
-const getAll = (boardId: string): Promise<ITask[]> => tasksRepo.getAll(boardId);
+const getAll: IFindAllTasks<string, ITask> = (boardId) => tasksRepo.getAll(boardId);
 
-const get = (boardId: string, id: string): Promise<ITask> => tasksRepo.get(boardId, id);
+const get: IFindOneOrRemoveTasks<string, ITask> = (boardId, id) => tasksRepo.get(boardId, id);
 
-const save = (task: ITask): Promise<ITask> => tasksRepo.save(Task.fromRequest(task));
+const save: ISave<ITask> = (task) => tasksRepo.save(Task.fromRequest(task));
 
-const update = (task: ITask): Promise<ITask> => tasksRepo.update(task);
+const update: ISave<ITask> = (task) => tasksRepo.update(task);
 
-const remove = (boardId: string, id: string): Promise<void> => tasksRepo.remove(boardId, id);
+const remove: IFindOneOrRemoveTasks<string, void> = (boardId, id) => tasksRepo.remove(boardId, id);
 
 export { get, getAll, remove, save, update };
