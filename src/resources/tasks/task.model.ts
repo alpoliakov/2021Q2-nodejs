@@ -23,8 +23,8 @@ class Task implements ITask {
     order = 0,
     description = 'task description',
     userId = null,
-    boardId = null,
-    columnId = null,
+    boardId = '',
+    columnId = '',
   } = {}) {
     this.id = id;
     this.title = title;

@@ -12,6 +12,11 @@ router
   .get(
     wrapAsyncFunc(async (req, res) => {
       const { boardId } = req.params;
+
+      if (!boardId) {
+        throw new NOT_FOUND_ERROR('Missing boardId');
+      }
+
       const tasks = await taskService.getAll(boardId);
       await res.json(tasks);
     }),
@@ -19,6 +24,11 @@ router
   .post(
     wrapAsyncFunc(async (req, res) => {
       const { boardId } = req.params;
+
+      if (!boardId) {
+        throw new NOT_FOUND_ERROR('Missing boardId');
+      }
+
       const task = await taskService.save({
         ...req.body,
         boardId,

@@ -45,7 +45,7 @@ const getEntity: TypeGetOrRemoveEntity = async (nameEntity, id) => {
 };
 
 const saveEntity = (nameEntity: string, entity: TypeEntities): TypeEntities => {
-  (DB[nameEntity] as Array<TypeEntities>).push(entity);
+  (<Array<TypeEntities>>DB[nameEntity]).push(entity);
 
   return entity;
 };
@@ -56,7 +56,7 @@ const updateEntity: TypeUpdateEntity = async (nameEntity, id, entity) => {
   if (oldEntity) {
     (DB[nameEntity] as Array<TypeEntities>)[
       (DB[nameEntity] as Array<TypeEntities>).indexOf(oldEntity)
-    ] = { id, ...entity };
+    ] = { ...oldEntity, ...entity };
   }
 
   return getEntity(nameEntity, id);
@@ -66,7 +66,7 @@ const removeEntity: TypeGetOrRemoveEntity = async (nameEntity, id) => {
   const entity = await getEntity(nameEntity, id);
 
   if (entity) {
-    const result = nameEntity === 'Users' ? <IUser>entity : <IBoard>entity;
+    const result: IUser | IBoard = nameEntity === 'Users' ? <IUser>entity : <IBoard>entity;
 
     (DB[`fixStructure${nameEntity}`] as TypeFixStructure)(result);
     (DB[nameEntity] as Array<TypeEntities>) = [
