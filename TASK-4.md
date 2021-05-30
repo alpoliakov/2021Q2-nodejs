@@ -98,5 +98,10 @@ After application running open new terminal and:
 
 to run all tests without authorization:
 ````
-npm test
+npm run test
+````
+
+To run a linter based on a local config:
+````
+npm run lint
 ````
