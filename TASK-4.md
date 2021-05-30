@@ -39,3 +39,5 @@ npm install
 ## Part 1 
 - (Supplement custom functions in **JSDoc** code with comments)
 In the cloned repository, in the **Releases** section (to the right of the main section), find **1 tags** and go to this tag by clicking on it with the left mouse button.
+
+![image](https://user-images.githubusercontent.com/27024108/120101905-31fb5a00-c151-11eb-81ad-d61818d0c4af.png)
