@@ -1,6 +1,5 @@
 import * as dotenv from 'dotenv';
-
-const path = require('path');
+import path from 'path';
 
 dotenv.config({
   path: path.join(__dirname, '../../.env'),
