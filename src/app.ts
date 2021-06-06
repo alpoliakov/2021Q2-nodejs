@@ -3,8 +3,8 @@ import 'reflect-metadata';
 import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
-import createError from 'http-errors';
-import { StatusCodes } from 'http-status-codes';
+// import createError from 'http-errors';
+// import { StatusCodes } from 'http-status-codes';
 import path from 'path';
 import swaggerUI from 'swagger-ui-express';
 import * as YAML from 'yamljs';
@@ -29,11 +29,13 @@ app.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 app.use('/', startService);
 
 app.use(logMiddleware);
+
 app.use('/users', usersRouter);
 app.use('/boards', boardsRouter);
 boardsRouter.use('/:boardId/tasks', tasksRouter);
+
 app.use('*', noPageExistsError);
-app.use((_req, _res, next) => next(createError(StatusCodes.NOT_FOUND)));
+// app.use((_req, _res, next) => next(createError(StatusCodes.NOT_FOUND)));
 app.use(handlerError);
 
 export default app;
