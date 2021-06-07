@@ -1,5 +1,8 @@
 # RS School REST service
 
+## Task 5
+[Logging & Error Handling description & ](https://github.com/rolling-scopes-school/basic-nodejs-2021Q2/blob/master/descriptions/logging-error-handling.md)
+
 ## Prerequisites
 
 - Git - [Download & Install Git](https://git-scm.com/downloads).

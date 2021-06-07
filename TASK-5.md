@@ -3,7 +3,8 @@
 #### Add logging functionality to already existing REST service.
      
 ## Description
-[Logging & Error Handling](https://github.com/rolling-scopes-school/basic-nodejs-2021Q2/blob/master/descriptions/logging-error-handling.md)
+**Logging & Error Handling**
+[Implementation - Description and instructions](https://github.com/alpoliakov/2021Q2-nodejs/blob/task-5/TASK-5.md)
 
 ## Prerequisites
 - Git - [Download & Install Git](https://git-scm.com/downloads).

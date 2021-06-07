@@ -20,7 +20,6 @@ process
     });
     const { exit } = process;
     Logger.on('finish', () => exit(1));
-    Logger.end();
   });
 
 app.listen(PORT || 4000, () =>
