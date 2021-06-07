@@ -76,3 +76,8 @@ Error handling is done centrally using middleware: **````errors/handlerError.ts`
 Error handling ````uncaughtException```` и ````unhandledRejection```` is located in the file: **````src/server.ts````**.
 
 Error logs are written to a separate file **````logs/errors.log````**, and are also duplicated by output to the console.
+
+### uncaughtException & unhandledRejection
+
+To test the catching and logging of the **```uncaughtException```** error, uncomment the code on line 23-25 in the **```app.тс```** file.
+To test the catching and logging of the **```unhandledRejection```** error, uncomment the code on line 28 in the **```app.тс```** file.

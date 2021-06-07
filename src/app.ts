@@ -18,6 +18,15 @@ import logMiddleware from './utils/logMiddleware';
 import startService from './utils/startService';
 
 const app = express();
+
+// Testing uncaughtException - Uncomment here:
+// setTimeout(() => {
+//   throw Error('Oops!');
+// }, 1000);
+
+// Testing unhandledRejection - Uncomment here:
+// Promise.reject(Error('Oops!'));
+
 app.use(cors());
 app.use(helmet());
 const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));

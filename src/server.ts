@@ -10,6 +10,7 @@ process
     });
     const { exit } = process;
     Logger.on('finish', () => exit(1));
+    Logger.end();
   })
   .on('unhandledRejection', (err) => {
     if (!err) return;
@@ -19,6 +20,7 @@ process
     });
     const { exit } = process;
     Logger.on('finish', () => exit(1));
+    Logger.end();
   });
 
 app.listen(PORT || 4000, () =>
