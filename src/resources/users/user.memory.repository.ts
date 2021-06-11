@@ -7,6 +7,7 @@ const ENTITY_NAME = 'Users';
 
 const getAll: IFindAll<IUser> = async () => {
   const users = await DB.getAllEntities(ENTITY_NAME);
+  // throw new Error('Oops!');
   return users as IUser[];
 };
 
