@@ -47,4 +47,7 @@ app.use('*', noPageExistsError);
 app.use((_req, _res, next) => next(createError(StatusCodes.NOT_FOUND)));
 app.use(handlerError);
 
+// You can uncomment the code below to check for updates in the container:
+// console.log('Check reload!');
+
 export default app;
