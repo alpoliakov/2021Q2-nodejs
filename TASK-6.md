@@ -26,3 +26,28 @@ and go to the branch ````task-6````
 ````
 git checkout task-6
 ````
+### Create a ```.env``` file
+
+In the root of the project, you need to create a **```.env```** file and register the following global variables in it:
+```
+NODE_ENV=development
+PORT=4000
+AUTH_MODE=false
+
+POSTGRES_PORT=5432
+POSTGRES_USER=<your postgres user name>
+POSTGRES_PASSWORD=<your postgres password>
+POSTGRES_DB=<your postgres db name>
+```
+
+## Run services
+
+To run all services use:
+```
+docker-compose up
+```
+
+For run it in background, use **```-d```** flag
+
+After starting the app on port (4000 as default) you can open in your browser OpenAPI documentation by typing http://localhost:4000/doc/.
+(For more information about OpenAPI/Swagger please visit https://swagger.io/.)
