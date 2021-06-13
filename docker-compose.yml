@@ -1,0 +1,21 @@
+volumes: '3'
+
+services:
+  node:
+    build: .
+    networks:
+      - user-net
+    ports:
+      - ${PORT}:${PORT}
+      depends_on:
+        - postgres
+      restart: on-failure
+      volumes:
+        - ./src:/app/src
+        - ./logs:/app/logs
+      environment:
+        PORT: ${PORT}
+
+  networks:
+    user-net:
+      driver: bridge
