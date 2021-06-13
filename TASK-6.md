@@ -51,3 +51,16 @@ For run it in background, use **```-d```** flag
 
 After starting the app on port (4000 as default) you can open in your browser OpenAPI documentation by typing http://localhost:4000/doc/.
 (For more information about OpenAPI/Swagger please visit https://swagger.io/.)
+
+
+## Stop services
+
+To stop services use:
+```
+docker-compose stop
+```
+
+## My Docker Hub repo
+
+Link to my **Docker Hub** repository: https://hub.docker.com/u/alpoliakov
+
