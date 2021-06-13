@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  node:
+    build: .
+    container_name: node
+    image: alpoliakov/nodejs_node:node
+    ports:
+      - ${PORT}:${PORT}
+    depends_on:
+      - postgres
+    restart: on-failure
+    volumes:
+      - ./src:/web/app/src
+      - ./nodemon.json:/web/app/nodemon.json
+      - ./src/logs:/web/app/logs
+    environment:
+      PORT: ${PORT}
+    networks:
+      - app-net
+
+  postgres:
+    build: ./database/
+    container_name: postgres
+    image: alpoliakov/nodejs_postgres:postgres
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    driver: bridge
+
+volumes:
+  pgdata:

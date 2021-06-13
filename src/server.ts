@@ -11,16 +11,16 @@ process
     const { exit } = process;
     Logger.on('finish', () => exit(1));
   })
-  .on('unhandledRejection', (err) => {
-    if (!err) return;
+  .on('unhandledRejection', (err: Error) => {
     Logger.error({
       name: 'unhandledRejection',
-      message: err,
+      message: err.message,
+      stack: err.stack,
     });
     const { exit } = process;
     Logger.on('finish', () => exit(1));
   });
 
 app.listen(PORT || 4000, () =>
-  console.log(`🚀 App is running on http://localhost:${PORT || 8080}`),
+  console.log(`🚀 App is running on http://localhost:${PORT || 4000}`),
 );

@@ -18,6 +18,15 @@ import logMiddleware from './utils/logMiddleware';
 import startService from './utils/startService';
 
 const app = express();
+
+// Testing uncaughtException - Uncomment here:
+// setTimeout(() => {
+//   throw Error('Oops!');
+// }, 1000);
+
+// Testing unhandledRejection - Uncomment here:
+// Promise.reject(Error('Oops!'));
+
 app.use(cors());
 app.use(helmet());
 const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
@@ -37,5 +46,8 @@ boardsRouter.use('/:boardId/tasks', tasksRouter);
 app.use('*', noPageExistsError);
 app.use((_req, _res, next) => next(createError(StatusCodes.NOT_FOUND)));
 app.use(handlerError);
+
+// You can uncomment the code below to check for updates in the container:
+// console.log('Check reload!');
 
 export default app;
