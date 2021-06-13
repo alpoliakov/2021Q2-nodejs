@@ -1,21 +1,21 @@
-volumes: '3'
+version: '3'
 
 services:
   node:
     build: .
-    networks:
-      - user-net
     ports:
       - ${PORT}:${PORT}
     depends_on:
       - postgres
     restart: on-failure
-      volumes:
-        - ./src:/app/src
-        - ./nodemon.json:/app/nodemon.json
-        - ./logs:/app/logs
+    volumes:
+      - ./src:/web/app/src
+      - ./nodemon.json:/web/app/nodemon.json
+      - ./src/logs:/web/app/logs
     environment:
       PORT: ${PORT}
+    networks:
+      - app-net
 
   postgres:
     build: ./database/
@@ -28,13 +28,11 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
     networks:
-      - user-net
+      - app-net
 
-  networks:
-    user-net:
-      driver: bridge
+networks:
+  app-net:
+    driver: bridge
 
-  volumes:
-    pgdata:
-    # src:
-    # logs:
+volumes:
+  pgdata:
